@@ -152,68 +152,94 @@
     }
   </style>
 </head>
+
+
+
 <body class="font-body bg-lux-white text-lux-black">
 
   <!-- ===================================
        SMART HEADER
        =================================== -->
-  <header class="smart-header fixed top-0 left-0 right-0 z-50 py-4">
+  <header class="smart-header fixed top-0 left-0 right-0 z-50 py-6 transition-all duration-500">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
       <div class="flex items-center justify-between">
 
-        <!-- Logo -->
-        <a href="/" class="flex items-center gap-3 group">
-          <!-- If you have a logo image, uncomment the line below and remove the text logo -->
-          <!-- <img src="../assets/img/logo.png" alt="Estudas? Comigo!" class="h-12 w-auto"> -->
+        <a href="/" class="flex items-center gap-5 group">
+          
+          <div class="relative w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center transition-transform duration-700 ease-out group-hover:rotate-[360deg]">
+            <img src="../assets/img/logoLampSF.png" alt="Símbolo" class="w-full h-full object-contain drop-shadow-md">
+          </div>
 
-          <!-- Text Logo with Mixed Typography -->
-          <div class="flex flex-col leading-none">
-            <span class="font-heading font-black text-2xl text-primary tracking-tight">ESTUDAS?</span>
-            <span class="font-body font-light text-2xl text-secondary tracking-wide">COMIGO!</span>
+          <div class="flex items-center gap-2 transition-all duration-300 group-hover:tracking-[0.25em]">
+            <span class="font-heading font-extrabold text-lg lg:text-xl text-primary tracking-widest uppercase">ESTUDAS?</span>
+            <div class="h-4 w-px bg-gray-300 mx-1"></div> <span class="font-body font-light text-lg lg:text-xl text-lux-black tracking-widest uppercase group-hover:text-secondary transition-colors">COMIGO!</span>
           </div>
         </a>
 
-        <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center gap-8">
-          <a href="/" class="nav-link text-lux-black hover:text-primary transition-colors pb-1">Início</a>
-          <a href="/sobre" class="nav-link text-lux-black hover:text-primary transition-colors pb-1">Sobre</a>
-          <a href="/servicos" class="nav-link text-lux-black hover:text-primary transition-colors pb-1">Serviços</a>
-          <a href="/precos" class="nav-link text-lux-black hover:text-primary transition-colors pb-1">Preços</a>
-          <a href="/contactos" class="nav-link text-lux-black hover:text-primary transition-colors pb-1">Contactos</a>
+        <nav class="hidden lg:flex items-center gap-12">
+          
+          <a href="/" class="group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Início
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+
+          <a href="/sobre" class="group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Sobre
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+
+          <a href="/servicos" class="group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Serviços
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+
+          <a href="/precos" class="group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Preços
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+
+          <a href="/contactos" class="relative py-2 text-sm font-extrabold text-primary tracking-[0.15em] uppercase cursor-default">
+            Contactos
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-secondary shadow-sm"></span>
+          </a>
+
         </nav>
 
-        <!-- CTA Button -->
-        <a href="tel:+351938656121" class="hidden lg:inline-flex items-center gap-2 px-6 py-3 bg-secondary text-lux-black font-bold rounded-full hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-xl">
-          <!-- Lucide Phone Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-          Ligar Agora
-        </a>
-
-        <!-- Mobile Menu Toggle -->
-        <button class="lg:hidden flex flex-col gap-1.5 mobile-menu-toggle" aria-label="Menu">
-          <span class="w-7 h-0.5 bg-primary transition-all"></span>
-          <span class="w-7 h-0.5 bg-primary transition-all"></span>
-          <span class="w-7 h-0.5 bg-primary transition-all"></span>
+        <button class="lg:hidden flex flex-col items-end gap-1.5 mobile-menu-toggle p-2 group" aria-label="Menu">
+          <span class="w-8 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
+          <span class="w-6 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
+          <span class="w-4 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
         </button>
 
       </div>
     </div>
   </header>
 
-  <!-- Mobile Navigation -->
-  <div class="mobile-nav fixed inset-y-0 right-0 w-80 bg-white/98 backdrop-blur-lg shadow-2xl z-40 lg:hidden">
-    <div class="flex flex-col items-center justify-center h-full gap-8 p-8">
-      <a href="/" class="nav-link text-2xl font-semibold text-lux-black hover:text-primary transition-colors">Início</a>
-      <a href="/sobre" class="nav-link text-2xl font-semibold text-lux-black hover:text-primary transition-colors">Sobre</a>
-      <a href="/servicos" class="nav-link text-2xl font-semibold text-lux-black hover:text-primary transition-colors">Serviços</a>
-      <a href="/precos" class="nav-link text-2xl font-semibold text-lux-black hover:text-primary transition-colors">Preços</a>
-      <a href="/contactos" class="nav-link text-2xl font-semibold text-lux-black hover:text-primary transition-colors">Contactos</a>
+  <div class="mobile-nav fixed inset-y-0 right-0 w-full sm:w-80 bg-white/98 backdrop-blur-xl shadow-2xl z-40 lg:hidden transform translate-x-full transition-transform duration-500 ease-in-out border-l border-gray-100">
+    <div class="flex flex-col h-full p-10">
+      
+      <div class="mb-12 flex items-center gap-4 justify-center">
+         <img src="../assets/img/logoLampSF.png" alt="Logo" class="w-10 h-10 object-contain">
+         <div class="flex flex-col leading-none">
+            <span class="font-heading font-extrabold text-lg text-primary tracking-widest uppercase">ESTUDAS?</span>
+            <span class="font-body font-light text-lg text-secondary tracking-widest uppercase">COMIGO!</span>
+         </div>
+      </div>
 
-      <a href="tel:+351938656121" class="mt-8 px-8 py-4 bg-secondary text-lux-black font-bold rounded-full hover:bg-secondary-light transition-all shadow-lg">
-        Ligar Agora
-      </a>
+      <div class="flex flex-col gap-6 items-center">
+        <a href="/" class="text-lg font-medium text-gray-600 tracking-widest uppercase hover:text-primary transition-colors">Início</a>
+        <a href="/sobre" class="text-lg font-medium text-gray-600 tracking-widest uppercase hover:text-primary transition-colors">Sobre</a>
+        <a href="/servicos" class="text-lg font-medium text-gray-600 tracking-widest uppercase hover:text-primary transition-colors">Serviços</a>
+        <a href="/precos" class="text-lg font-medium text-gray-600 tracking-widest uppercase hover:text-primary transition-colors">Preços</a>
+        
+        <div class="w-12 h-px bg-gray-200 my-2"></div>
+        
+        <a href="/contactos" class="text-lg font-extrabold text-primary tracking-widest uppercase">Contactos</a>
+      </div>
+
+      <div class="mt-auto text-center">
+        <p class="text-xs text-gray-400 font-light tracking-wide uppercase">Excelência no Ensino</p>
+      </div>
     </div>
   </div>
 
