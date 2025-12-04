@@ -410,14 +410,11 @@
   <footer class="bg-gradient-to-br from-lux-black via-primary-dark to-lux-black text-white py-20">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
-      <!-- Glowing Logo Centerpiece -->
       <div class="flex flex-col items-center mb-16">
-        <!-- Brain/Bulb Icon with Glow Animation -->
-        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-secondary to-secondary-light flex items-center justify-center mb-6 glow-pulse">
-          <img src="../assets/img/logoLampSF.png" alt="Logo">
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-secondary to-secondary-light flex items-center justify-center mb-6 glow-pulse p-2">
+          <img src="../assets/img/logoLampSF.png" alt="Logo" class="w-3/4 h-3/4 object-contain drop-shadow-md">
         </div>
 
-        <!-- Brand Name with Mixed Typography -->
         <h3 class="text-center mb-4">
           <span class="font-heading font-black text-3xl text-white">ESTUDAS? </span>
           <span class="font-body font-light text-3xl text-secondary">COMIGO!</span>
@@ -427,7 +424,6 @@
           Centro de Explicações e Estudo Acompanhado dedicado a transformar desafios em sucesso escolar.
         </p>
 
-        <!-- Social Media -->
         <div class="flex gap-4">
           <a href="#" class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-secondary hover:scale-110 transition-all" aria-label="Facebook">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -439,47 +435,59 @@
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
           </a>
-          <a href="mailto:estudascomigo@hotmail.com" class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-secondary hover:scale-110 transition-all" aria-label="Email">
+          <span class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center cursor-default" aria-label="Email">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect width="20" height="16" x="2" y="4" rx="2"/>
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
             </svg>
-          </a>
+          </span>
         </div>
       </div>
 
-      <!-- Footer Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/20 pt-12">
 
-        <!-- Quick Links -->
         <div class="text-center md:text-left">
           <h4 class="font-heading font-bold text-xl text-secondary mb-6">Links Rápidos</h4>
           <div class="flex flex-col gap-3">
-            <a href="/" class="text-gray-300 hover:text-secondary transition-colors">Início</a>
-            <a href="/sobre" class="text-gray-300 hover:text-secondary transition-colors">Sobre Nós</a>
-            <a href="/servicos" class="text-gray-300 hover:text-secondary transition-colors">Serviços</a>
-            <a href="/precos" class="text-gray-300 hover:text-secondary transition-colors">Preços</a>
-            <a href="/contactos" class="text-gray-300 hover:text-secondary transition-colors">Contactos</a>
+            <a href="/" class="group relative w-fit mx-auto md:mx-0 text-gray-300 hover:text-secondary transition-colors">
+              Início
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="/sobre" class="group relative w-fit mx-auto md:mx-0 text-gray-300 hover:text-secondary transition-colors">
+              Sobre Nós
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="/servicos" class="group relative w-fit mx-auto md:mx-0 text-gray-300 hover:text-secondary transition-colors">
+              Serviços
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="/precos" class="group relative w-fit mx-auto md:mx-0 text-gray-300 hover:text-secondary transition-colors">
+              Preços
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="/contactos" class="group relative w-fit mx-auto md:mx-0 font-bold text-secondary transition-colors">
+              Contactos
+              <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary"></span>
+            </a>
           </div>
         </div>
 
-        <!-- Contact Info -->
         <div class="text-center md:text-left">
           <h4 class="font-heading font-bold text-xl text-secondary mb-6">Contacto</h4>
           <div class="flex flex-col gap-3">
-            <a href="tel:+351938656121" class="text-gray-300 hover:text-secondary transition-colors flex items-center justify-center md:justify-start gap-2">
+            <span class="text-gray-300 flex items-center justify-center md:justify-start gap-2 cursor-text">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
               938 656 121
-            </a>
-            <a href="mailto:estudascomigo@hotmail.com" class="text-gray-300 hover:text-secondary transition-colors flex items-center justify-center md:justify-start gap-2">
+            </span>
+            <span class="text-gray-300 flex items-center justify-center md:justify-start gap-2 cursor-text">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect width="20" height="16" x="2" y="4" rx="2"/>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
               </svg>
               estudascomigo@hotmail.com
-            </a>
+            </span>
             <p class="text-gray-300 text-sm leading-relaxed mt-4">
               Rua D. António Ferreira Gomes 273<br>
               1º andar, sala 5<br>
@@ -488,7 +496,6 @@
           </div>
         </div>
 
-        <!-- Schedule -->
         <div class="text-center md:text-left">
           <h4 class="font-heading font-bold text-xl text-secondary mb-6">Horário</h4>
           <p class="text-gray-300 leading-loose">
@@ -500,11 +507,15 @@
 
       </div>
 
-      <!-- Copyright -->
-      <div class="border-t border-white/10 mt-12 pt-8 text-center">
-        <p class="text-gray-400 text-sm">
-          &copy; 2024 Estudas? Comigo! Todos os direitos reservados.
+      <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+        <p class="text-gray-400">
+          © 2024 Estudas? Comigo! Todos os direitos reservados.
         </p>
+        
+        <div class="flex gap-6">
+            <a href="#" class="text-gray-400 hover:text-secondary transition-colors">Termos e Condições</a>
+            <a href="#" class="text-gray-400 hover:text-secondary transition-colors">Privacidade</a>
+        </div>
       </div>
 
     </div>
