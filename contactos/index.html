@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-PT" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,191 +11,352 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="../assets/css/reset.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
-
-  <!-- Preconnect for performance -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8A5A3C',
+            secondary: '#F2B734',
+            'lux-black': '#1a1a1a',
+            'lux-white': '#fafafa',
+            'primary-dark': '#6B4430',
+            'secondary-light': '#FFD95A',
+          },
+          fontFamily: {
+            heading: ['Nunito', 'sans-serif'],
+            body: ['Open Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Global Styles -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Page-Specific Animations -->
+  <style>
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Glowing Footer Animation */
+    @keyframes glow-pulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 15px rgba(242, 183, 52, 0.6))
+                drop-shadow(0 0 30px rgba(242, 183, 52, 0.4))
+                drop-shadow(0 0 45px rgba(242, 183, 52, 0.2));
+        transform: scale(1);
+      }
+      50% {
+        filter: drop-shadow(0 0 25px rgba(242, 183, 52, 0.8))
+                drop-shadow(0 0 50px rgba(242, 183, 52, 0.6))
+                drop-shadow(0 0 75px rgba(242, 183, 52, 0.4));
+        transform: scale(1.05);
+      }
+    }
+
+    .glow-pulse {
+      animation: glow-pulse 2.5s ease-in-out infinite;
+    }
+
+    /* Parallax Background */
+    .parallax-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      will-change: transform;
+    }
+
+    /* Grayscale Map */
+    .map-grayscale {
+      filter: grayscale(0.4) contrast(1.1) brightness(0.95);
+      transition: filter 0.4s ease;
+    }
+
+    .map-grayscale:hover {
+      filter: grayscale(0) contrast(1) brightness(1);
+    }
+
+    /* Smart Header Transitions */
+    .smart-header {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  background-color 0.3s ease,
+                  backdrop-filter 0.3s ease,
+                  box-shadow 0.3s ease;
+    }
+
+    .smart-header.hidden {
+      transform: translateY(-100%);
+    }
+
+    .smart-header.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px) saturate(180%);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Active Nav Link */
+    .nav-link.active {
+      color: #8A5A3C;
+      font-weight: 700;
+      border-bottom: 2px solid #F2B734;
+    }
+
+    /* Mobile Menu */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-nav.active {
+      transform: translateX(0);
+    }
+
+    /* Card Hover Glow */
+    .luxury-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .luxury-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px -12px rgba(242, 183, 52, 0.3),
+                  0 0 0 1px rgba(242, 183, 52, 0.2);
+    }
+  </style>
 </head>
-<body>
+<body class="font-body bg-lux-white text-lux-black">
 
   <!-- ===================================
-       HEADER & NAVIGATION
+       SMART HEADER
        =================================== -->
-  <header class="header">
-    <div class="container">
-      <a href="/" class="logo">Estudas? Comigo!</a>
+  <header class="smart-header fixed top-0 left-0 right-0 z-50 py-4">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="flex items-center justify-between">
 
-      <nav class="nav-menu">
-        <a href="/">Início</a>
-        <a href="/sobre">Sobre</a>
-        <a href="/servicos">Serviços</a>
-        <a href="/precos">Preços</a>
-        <a href="/contactos">Contactos</a>
-      </nav>
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 group">
+          <!-- If you have a logo image, uncomment the line below and remove the text logo -->
+          <!-- <img src="../assets/img/logo.png" alt="Estudas? Comigo!" class="h-12 w-auto"> -->
 
-      <a href="tel:+351938656121" class="btn-cta">Ligar Agora</a>
+          <!-- Text Logo with Mixed Typography -->
+          <div class="flex flex-col leading-none">
+            <span class="font-heading font-black text-2xl text-primary tracking-tight">ESTUDAS?</span>
+            <span class="font-body font-light text-2xl text-secondary tracking-wide">COMIGO!</span>
+          </div>
+        </a>
 
-      <button class="mobile-menu-toggle" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="/" class="nav-link text-lux-black hover:text-primary transition-colors pb-1">Início</a>
+          <a href="/sobre" class="nav-link text-lux-black hover:text-primary transition-colors pb-1">Sobre</a>
+          <a href="/servicos" class="nav-link text-lux-black hover:text-primary transition-colors pb-1">Serviços</a>
+          <a href="/precos" class="nav-link text-lux-black hover:text-primary transition-colors pb-1">Preços</a>
+          <a href="/contactos" class="nav-link text-lux-black hover:text-primary transition-colors pb-1">Contactos</a>
+        </nav>
+
+        <!-- CTA Button -->
+        <a href="tel:+351938656121" class="hidden lg:inline-flex items-center gap-2 px-6 py-3 bg-secondary text-lux-black font-bold rounded-full hover:bg-secondary-light hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-xl">
+          <!-- Lucide Phone Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          Ligar Agora
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="lg:hidden flex flex-col gap-1.5 mobile-menu-toggle" aria-label="Menu">
+          <span class="w-7 h-0.5 bg-primary transition-all"></span>
+          <span class="w-7 h-0.5 bg-primary transition-all"></span>
+          <span class="w-7 h-0.5 bg-primary transition-all"></span>
+        </button>
+
+      </div>
     </div>
   </header>
 
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav fixed inset-y-0 right-0 w-80 bg-white/98 backdrop-blur-lg shadow-2xl z-40 lg:hidden">
+    <div class="flex flex-col items-center justify-center h-full gap-8 p-8">
+      <a href="/" class="nav-link text-2xl font-semibold text-lux-black hover:text-primary transition-colors">Início</a>
+      <a href="/sobre" class="nav-link text-2xl font-semibold text-lux-black hover:text-primary transition-colors">Sobre</a>
+      <a href="/servicos" class="nav-link text-2xl font-semibold text-lux-black hover:text-primary transition-colors">Serviços</a>
+      <a href="/precos" class="nav-link text-2xl font-semibold text-lux-black hover:text-primary transition-colors">Preços</a>
+      <a href="/contactos" class="nav-link text-2xl font-semibold text-lux-black hover:text-primary transition-colors">Contactos</a>
+
+      <a href="tel:+351938656121" class="mt-8 px-8 py-4 bg-secondary text-lux-black font-bold rounded-full hover:bg-secondary-light transition-all shadow-lg">
+        Ligar Agora
+      </a>
+    </div>
+  </div>
+
   <!-- ===================================
-       PAGE HERO (Mini)
+       HERO SECTION (Parallax)
        =================================== -->
-  <section class="hero" style="min-height: 50vh; padding-top: 8rem;">
-    <div class="container">
-      <div class="hero-content reveal">
-        <h1>Vamos Conversar?</h1>
-        <p>Estamos prontos para ajudar a transformar o sucesso escolar. Entre em contacto connosco.</p>
-      </div>
+  <section class="parallax-container relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <!-- Parallax Background Image -->
+    <img
+      src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1920&auto=format&fit=crop"
+      alt="Study Center"
+      class="parallax-bg"
+      data-speed="0.4"
+    >
+
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary-dark/85 to-secondary/70"></div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 text-center px-6 reveal">
+      <h1 class="font-heading font-black text-6xl lg:text-8xl text-white mb-6 tracking-tight">
+        Contactos
+      </h1>
+      <p class="font-body font-light text-xl lg:text-2xl text-secondary-light max-w-2xl mx-auto tracking-wide">
+        Vamos Construir Juntos o Sucesso Escolar
+      </p>
     </div>
   </section>
 
   <!-- ===================================
-       CONTACT SECTION (Split Layout)
+       LUXURY CONTACT CARDS
        =================================== -->
-  <section class="contact" style="padding: 4rem 0;">
-    <div class="container">
-      <div class="contact-split reveal">
+  <section class="py-24 bg-gradient-to-b from-lux-white to-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
-        <!-- Left: Contact Info -->
-        <div class="contact-info">
-          <h3>Informações de Contacto</h3>
-          <p style="color: var(--text-light); margin-bottom: 2rem;">
-            Prefere falar connosco diretamente? Estamos disponíveis através dos seguintes canais.
-          </p>
+      <!-- Grid of Luxury Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12">
 
-          <div class="contact-item">
-            <div class="contact-icon">📞</div>
-            <div class="contact-details">
-              <h4>Telefone</h4>
-              <p><a href="tel:+351938656121">938 656 121</a></p>
-              <p style="font-size: 0.85rem; margin-top: 0.25rem;">Segunda a Sexta: 14h - 20h | Sábado: 9h - 13h</p>
+        <!-- Card 1: Telephone -->
+        <div class="luxury-card bg-white rounded-2xl p-12 shadow-xl reveal">
+          <div class="flex flex-col items-center text-center">
+            <!-- Lucide Phone Icon -->
+            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-6 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
             </div>
-          </div>
 
-          <div class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <div class="contact-details">
-              <h4>Email</h4>
-              <p><a href="mailto:estudascomigo@hotmail.com">estudascomigo@hotmail.com</a></p>
-              <p style="font-size: 0.85rem; margin-top: 0.25rem;">Respondemos em até 24 horas</p>
-            </div>
-          </div>
+            <h3 class="font-heading font-bold text-3xl text-primary mb-4">Telefone</h3>
+            <p class="text-xl font-semibold text-lux-black mb-2">
+              <a href="tel:+351938656121" class="hover:text-secondary transition-colors">938 656 121</a>
+            </p>
+            <p class="text-sm text-gray-600 mb-6">
+              Segunda a Sexta: 14h - 20h<br>
+              Sábado: 9h - 13h
+            </p>
 
-          <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div class="contact-details">
-              <h4>Morada</h4>
-              <p>
-                Rua D. António Ferreira Gomes 273<br>
-                1º andar, sala 5<br>
-                Vila Nova de Gaia, Portugal
-              </p>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">🕐</div>
-            <div class="contact-details">
-              <h4>Horário de Funcionamento</h4>
-              <p>
-                <strong>Segunda a Sexta:</strong> 14h - 20h<br>
-                <strong>Sábado:</strong> 9h - 13h<br>
-                <strong>Domingo:</strong> Encerrado
-              </p>
-            </div>
-          </div>
-
-          <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--bg-body);">
-            <h4 style="margin-bottom: 1rem; color: var(--primary);">Siga-nos nas Redes Sociais</h4>
-            <div class="footer-social">
-              <a href="#" class="social-icon" aria-label="Facebook">📘</a>
-              <a href="#" class="social-icon" aria-label="Instagram">📷</a>
-              <a href="mailto:estudascomigo@hotmail.com" class="social-icon" aria-label="Email">✉️</a>
-            </div>
+            <a href="tel:+351938656121" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-primary-dark text-white font-bold rounded-full hover:shadow-2xl hover:-translate-y-1 transition-all">
+              Ligar Agora
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </a>
           </div>
         </div>
 
-        <!-- Right: Contact Form -->
-        <div class="contact-form">
-          <h3 style="margin-bottom: 1.5rem; color: var(--primary);">Envie-nos uma Mensagem</h3>
-          <p style="color: var(--text-light); margin-bottom: 2rem;">
-            Preencha o formulário abaixo e entraremos em contacto consigo o mais breve possível.
-          </p>
-
-          <form action="#" method="POST">
-            <div class="form-group">
-              <input
-                type="text"
-                id="nome"
-                name="nome"
-                class="form-input"
-                placeholder=" "
-                required
-              >
-              <label for="nome" class="form-label">Nome Completo</label>
+        <!-- Card 2: WhatsApp -->
+        <div class="luxury-card bg-white rounded-2xl p-12 shadow-xl reveal">
+          <div class="flex flex-col items-center text-center">
+            <!-- Lucide MessageCircle Icon -->
+            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-6 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
             </div>
 
-            <div class="form-group">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="form-input"
-                placeholder=" "
-                required
-              >
-              <label for="email" class="form-label">Email</label>
-            </div>
-
-            <div class="form-group">
-              <input
-                type="tel"
-                id="telefone"
-                name="telefone"
-                class="form-input"
-                placeholder=" "
-              >
-              <label for="telefone" class="form-label">Telefone (Opcional)</label>
-            </div>
-
-            <div class="form-group">
-              <input
-                type="text"
-                id="assunto"
-                name="assunto"
-                class="form-input"
-                placeholder=" "
-                required
-              >
-              <label for="assunto" class="form-label">Assunto</label>
-            </div>
-
-            <div class="form-group">
-              <textarea
-                id="mensagem"
-                name="mensagem"
-                class="form-textarea"
-                placeholder=" "
-                required
-              ></textarea>
-              <label for="mensagem" class="form-label">Mensagem</label>
-            </div>
-
-            <button type="submit" class="form-submit">Enviar Mensagem</button>
-
-            <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1rem; text-align: center;">
-              Ao enviar este formulário, concorda com a nossa política de privacidade.
+            <h3 class="font-heading font-bold text-3xl text-primary mb-4">WhatsApp</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Envie uma mensagem rápida e receba resposta imediata durante o horário de funcionamento.
             </p>
-          </form>
+
+            <a href="https://wa.me/351938656121?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20explicações." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-primary-dark text-white font-bold rounded-full hover:shadow-2xl hover:-translate-y-1 transition-all">
+              Enviar Mensagem
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: Email -->
+        <div class="luxury-card bg-white rounded-2xl p-12 shadow-xl reveal">
+          <div class="flex flex-col items-center text-center">
+            <!-- Lucide Mail Icon -->
+            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-6 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </div>
+
+            <h3 class="font-heading font-bold text-3xl text-primary mb-4">Email</h3>
+            <p class="text-xl font-semibold text-lux-black mb-2">
+              <a href="mailto:estudascomigo@hotmail.com" class="hover:text-secondary transition-colors">estudascomigo@hotmail.com</a>
+            </p>
+            <p class="text-sm text-gray-600 mb-6">
+              Respondemos em até 24 horas
+            </p>
+
+            <a href="mailto:estudascomigo@hotmail.com" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-white hover:shadow-xl hover:-translate-y-1 transition-all">
+              Enviar Email
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 4: Location -->
+        <div class="luxury-card bg-white rounded-2xl p-12 shadow-xl reveal">
+          <div class="flex flex-col items-center text-center">
+            <!-- Lucide MapPin Icon -->
+            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-6 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+
+            <h3 class="font-heading font-bold text-3xl text-primary mb-4">Localização</h3>
+            <p class="text-lux-black leading-relaxed mb-6">
+              <strong>Rua D. António Ferreira Gomes 273</strong><br>
+              1º andar, sala 5<br>
+              Vila Nova de Gaia, Portugal
+            </p>
+
+            <a href="https://www.google.com/maps/search/?api=1&query=Rua+D.+António+Ferreira+Gomes+273+Vila+Nova+de+Gaia" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-white hover:shadow-xl hover:-translate-y-1 transition-all">
+              Ver no Mapa
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </a>
+          </div>
         </div>
 
       </div>
@@ -205,89 +366,125 @@
   <!-- ===================================
        MAP SECTION
        =================================== -->
-  <section class="map-section" style="padding: 0 0 4rem 0;">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">Onde Estamos</h2>
-        <p class="section-subtitle">Encontre-nos facilmente no coração de Vila Nova de Gaia, com fácil acesso de transportes públicos e estacionamento nas proximidades.</p>
-      </div>
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12">
 
-      <div class="map-container reveal">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.176046030584!2d-8.6045!3d41.1234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDA3JzI0LjIiTiA4wrAzNicxNi4yIlc!5e0!3m2!1spt-PT!2spt!4v1600000000000!5m2!1spt-PT!2spt"
-          width="600"
-          height="450"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Localização do Estudas? Comigo! em Vila Nova de Gaia"
-        ></iframe>
-      </div>
-
-      <div style="margin-top: 2rem; text-align: center;" class="reveal">
-        <p style="color: var(--text-light); margin-bottom: 1rem;">
-          <strong>Como Chegar:</strong><br>
-          Metro: Estação General Torres (Linha D) - 5 minutos a pé<br>
-          Autocarro: Linhas 900, 901, 905 - Paragem Rua D. António Ferreira Gomes<br>
-          Carro: Estacionamento gratuito disponível nas ruas adjacentes
+      <!-- Section Header -->
+      <div class="text-center mb-16 reveal">
+        <h2 class="font-heading font-black text-5xl text-primary mb-4">Onde Estamos</h2>
+        <p class="font-body text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Encontre-nos facilmente no coração de Vila Nova de Gaia, com fácil acesso de transportes públicos e estacionamento nas proximidades.
         </p>
       </div>
-    </div>
-  </section>
 
-  <!-- ===================================
-       CTA SECTION
-       =================================== -->
-  <section class="cta-section bg-light">
-    <div class="container-sm text-center reveal">
-      <h2>Ainda com Dúvidas?</h2>
-      <p class="mt-2 mb-3">Ligue-nos diretamente ou visite-nos para uma consulta gratuita e sem compromisso.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="tel:+351938656121" class="btn btn-primary">Ligar: 938 656 121</a>
-        <a href="/servicos" class="btn btn-outline">Ver Serviços</a>
-      </div>
-    </div>
-  </section>
+      <!-- Map Container -->
+      <div class="reveal">
+        <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-lux-white">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.176046030584!2d-8.6045!3d41.1234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDA3JzI0LjIiTiA4wrAzNicxNi4yIlc!5e0!3m2!1spt-PT!2spt!4v1600000000000!5m2!1spt-PT!2spt"
+            class="w-full h-[500px] map-grayscale"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização do Estudas? Comigo! em Vila Nova de Gaia"
+          ></iframe>
+        </div>
 
-  <!-- ===================================
-       FOOTER
-       =================================== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <!-- Brand Column -->
-        <div class="footer-column">
-          <h4>Estudas? Comigo!</h4>
-          <p style="color: rgba(255,255,255,0.7); margin-top: 1rem; line-height: 1.6;">
-            Centro de Explicações e Estudo Acompanhado dedicado a transformar desafios em sucesso escolar.
+        <!-- Transport Info -->
+        <div class="mt-12 text-center">
+          <p class="text-gray-700 leading-loose">
+            <span class="block mb-4 font-heading font-bold text-xl text-primary">Como Chegar:</span>
+            <span class="block mb-2"><strong>Metro:</strong> Estação General Torres (Linha D) - 5 minutos a pé</span>
+            <span class="block mb-2"><strong>Autocarro:</strong> Linhas 900, 901, 905 - Paragem Rua D. António Ferreira Gomes</span>
+            <span class="block"><strong>Carro:</strong> Estacionamento gratuito disponível nas ruas adjacentes</span>
           </p>
-          <div class="footer-social">
-            <a href="#" class="social-icon" aria-label="Facebook">📘</a>
-            <a href="#" class="social-icon" aria-label="Instagram">📷</a>
-            <a href="mailto:estudascomigo@hotmail.com" class="social-icon" aria-label="Email">✉️</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================
+       GLOWING FOOTER
+       =================================== -->
+  <footer class="bg-gradient-to-br from-lux-black via-primary-dark to-lux-black text-white py-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+      <!-- Glowing Logo Centerpiece -->
+      <div class="flex flex-col items-center mb-16">
+        <!-- Brain/Bulb Icon with Glow Animation -->
+        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-secondary to-secondary-light flex items-center justify-center mb-6 glow-pulse">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-lux-black">
+            <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+            <path d="M9 18h6"/>
+            <path d="M10 22h4"/>
+          </svg>
+        </div>
+
+        <!-- Brand Name with Mixed Typography -->
+        <h3 class="text-center mb-4">
+          <span class="font-heading font-black text-3xl text-white">ESTUDAS? </span>
+          <span class="font-body font-light text-3xl text-secondary">COMIGO!</span>
+        </h3>
+
+        <p class="font-body font-light text-center text-gray-300 max-w-2xl mb-8 text-lg leading-relaxed">
+          Centro de Explicações e Estudo Acompanhado dedicado a transformar desafios em sucesso escolar.
+        </p>
+
+        <!-- Social Media -->
+        <div class="flex gap-4">
+          <a href="#" class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-secondary hover:scale-110 transition-all" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="#" class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-secondary hover:scale-110 transition-all" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="mailto:estudascomigo@hotmail.com" class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-secondary hover:scale-110 transition-all" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/20 pt-12">
+
+        <!-- Quick Links -->
+        <div class="text-center md:text-left">
+          <h4 class="font-heading font-bold text-xl text-secondary mb-6">Links Rápidos</h4>
+          <div class="flex flex-col gap-3">
+            <a href="/" class="text-gray-300 hover:text-secondary transition-colors">Início</a>
+            <a href="/sobre" class="text-gray-300 hover:text-secondary transition-colors">Sobre Nós</a>
+            <a href="/servicos" class="text-gray-300 hover:text-secondary transition-colors">Serviços</a>
+            <a href="/precos" class="text-gray-300 hover:text-secondary transition-colors">Preços</a>
+            <a href="/contactos" class="text-gray-300 hover:text-secondary transition-colors">Contactos</a>
           </div>
         </div>
 
-        <!-- Links Column -->
-        <div class="footer-column">
-          <h4>Links Rápidos</h4>
-          <div class="footer-links">
-            <a href="/">Início</a>
-            <a href="/sobre">Sobre Nós</a>
-            <a href="/servicos">Serviços</a>
-            <a href="/precos">Preços</a>
-            <a href="/contactos">Contactos</a>
-          </div>
-        </div>
-
-        <!-- Contact Column -->
-        <div class="footer-column">
-          <h4>Contacto</h4>
-          <div class="footer-links">
-            <a href="tel:+351938656121">📞 938 656 121</a>
-            <a href="mailto:estudascomigo@hotmail.com">✉️ estudascomigo@hotmail.com</a>
-            <p style="color: rgba(255,255,255,0.7); margin-top: 1rem; line-height: 1.6;">
+        <!-- Contact Info -->
+        <div class="text-center md:text-left">
+          <h4 class="font-heading font-bold text-xl text-secondary mb-6">Contacto</h4>
+          <div class="flex flex-col gap-3">
+            <a href="tel:+351938656121" class="text-gray-300 hover:text-secondary transition-colors flex items-center justify-center md:justify-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              938 656 121
+            </a>
+            <a href="mailto:estudascomigo@hotmail.com" class="text-gray-300 hover:text-secondary transition-colors flex items-center justify-center md:justify-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              estudascomigo@hotmail.com
+            </a>
+            <p class="text-gray-300 text-sm leading-relaxed mt-4">
               Rua D. António Ferreira Gomes 273<br>
               1º andar, sala 5<br>
               Vila Nova de Gaia
@@ -295,24 +492,30 @@
           </div>
         </div>
 
-        <!-- Schedule Column -->
-        <div class="footer-column">
-          <h4>Horário</h4>
-          <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">
-            Segunda a Sexta: 14h - 20h<br>
-            Sábado: 9h - 13h<br>
-            Domingo: Encerrado
+        <!-- Schedule -->
+        <div class="text-center md:text-left">
+          <h4 class="font-heading font-bold text-xl text-secondary mb-6">Horário</h4>
+          <p class="text-gray-300 leading-loose">
+            <strong class="text-white">Segunda a Sexta:</strong> 14h - 20h<br>
+            <strong class="text-white">Sábado:</strong> 9h - 13h<br>
+            <strong class="text-white">Domingo:</strong> Encerrado
           </p>
         </div>
+
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2024 Estudas? Comigo! Todos os direitos reservados.</p>
+      <!-- Copyright -->
+      <div class="border-t border-white/10 mt-12 pt-8 text-center">
+        <p class="text-gray-400 text-sm">
+          &copy; 2024 Estudas? Comigo! Todos os direitos reservados.
+        </p>
       </div>
+
     </div>
   </footer>
 
   <!-- JavaScript -->
   <script src="../assets/js/main.js"></script>
+
 </body>
 </html>
