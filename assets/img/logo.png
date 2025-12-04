@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="30" cy="30" r="28" fill="#8A5A3C"/>
+
+  <!-- Book Icon -->
+  <path d="M15 20 H45 V42 H15 Z" fill="#F2B734" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M30 20 V42" stroke="#FFFFFF" stroke-width="2"/>
+
+  <!-- Sparkle -->
+  <circle cx="40" cy="15" r="3" fill="#FFD95A"/>
+  <path d="M40 10 L40 20 M35 15 L45 15" stroke="#FFD95A" stroke-width="1.5"/>
+</svg>
