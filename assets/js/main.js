@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ===================================
-   SMART HEADER (Scroll Direction Detection)
-   Hide on scroll down, show on scroll up
+   SMART HEADER (Scroll Direction Detection with Threshold)
+   Hide on scroll down, show only after significant scroll up
    =================================== */
 
 function initSmartHeader() {
@@ -21,32 +21,66 @@ function initSmartHeader() {
 
   if (!header) return;
 
+  // Variáveis de controlo
   let lastScrollY = window.scrollY;
+  let scrollDelta = 0;
+  let isHeaderHidden = false;
   let ticking = false;
 
+  // Configurações
+  const SCROLL_UP_THRESHOLD = 150; // Quantos pixels subir para o menu aparecer
+  const HIDE_AFTER = 150; // Só começa a esconder depois de descer 150px
+
+  // Ajusta o padding do body para o conteúdo não ficar escondido
+  const setHeaderHeight = () => {
+    const headerHeight = header.offsetHeight;
+    document.body.style.paddingTop = `${headerHeight}px`;
+  };
+  
+  // Inicializa a altura e atualiza se a janela mudar de tamanho
+  setHeaderHeight();
+  window.addEventListener('resize', setHeaderHeight);
+
+  // A Lógica principal da animação
   const updateHeader = () => {
     const scrollY = window.scrollY;
+    const scrollDifference = scrollY - lastScrollY;
 
-    // Add glassmorphism class when scrolled down
-    if (scrollY > 100) {
+    // Adiciona efeito de vidro/sombra se não estiver no topo
+    if (scrollY > 50) { 
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
 
-    // Hide/Show based on scroll direction
-    if (scrollY > lastScrollY && scrollY > 200) {
-      // Scrolling down - hide header
-      header.classList.add('hidden');
-    } else {
-      // Scrolling up - show header
-      header.classList.remove('hidden');
+    // Lógica de Scroll (Aparecer/Desaparecer)
+    
+    // 1. Se rolar para BAIXO e já passou do topo
+    if (scrollDifference > 0 && scrollY > HIDE_AFTER) {
+      if (!isHeaderHidden) {
+        header.classList.add('header-hidden'); // O CSS faz a animação suave
+        isHeaderHidden = true;
+      }
+      scrollDelta = 0;
+    }
+    // 2. Se rolar para CIMA
+    else if (scrollDifference < 0) {
+      scrollDelta += Math.abs(scrollDifference);
+
+      if (scrollDelta >= SCROLL_UP_THRESHOLD || scrollY <= HIDE_AFTER) {
+        if (isHeaderHidden) {
+          header.classList.remove('header-hidden'); // O CSS faz a animação suave
+          isHeaderHidden = false;
+        }
+        scrollDelta = 0;
+      }
     }
 
     lastScrollY = scrollY;
     ticking = false;
   };
 
+  // O "Ouvinte" que deteta o scroll e chama a função acima
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(updateHeader);

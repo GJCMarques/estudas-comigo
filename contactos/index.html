@@ -79,27 +79,6 @@
       animation: glow-pulse 2.5s ease-in-out infinite;
     }
 
-    /* NOVA ANIMAÇÃO SUAVE DO HEADER */
-    .smart-header {
-      /* Adicionada transição de opacidade e transform mais lenta (0.6s) e fluida */
-      transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
-                  opacity 0.6s ease-in-out,
-                  background-color 0.3s ease,
-                  box-shadow 0.3s ease;
-      opacity: 1;
-    }
-
-    .smart-header.hidden {
-      transform: translateY(-100%);
-      opacity: 0; /* Desvanece enquanto sobe para ser menos "bruto" */
-      pointer-events: none; /* Previne cliques enquanto invisível */
-    }
-
-    .smart-header.scrolled {
-      /* Mantém o estilo, mas a base já será branca */
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    }
-
     /* Parallax Background */
     .parallax-container {
       position: relative;
@@ -128,14 +107,20 @@
 
     /* Smart Header Transitions */
     .smart-header {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      /* Transição suave para transform e opacity */
+      transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
+                  opacity 0.6s ease-in-out,
                   background-color 0.3s ease,
-                  backdrop-filter 0.3s ease,
                   box-shadow 0.3s ease;
+      opacity: 1;
+      transform: translateY(0);
+      will-change: transform, opacity; /* Ajuda na performance */
     }
 
-    .smart-header.hidden {
+    .smart-header.header-hidden {
       transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
     }
 
     .smart-header.scrolled {
@@ -271,7 +256,7 @@
   <section class="parallax-container relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
     <!-- Parallax Background Image -->
     <img
-      src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1920&auto=format&fit=crop"
+      src="../assets/img/imagemcontacto.jpeg"
       alt="Study Center"
       class="parallax-bg"
       data-speed="0.4"
