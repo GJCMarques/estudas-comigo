@@ -14,8 +14,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Open+Sans:wght@300;400;600;700&family=Saira+Stencil+One&display=swap" rel="stylesheet">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -35,6 +34,7 @@
           fontFamily: {
             heading: ['Nunito', 'sans-serif'],
             body: ['Open Sans', 'sans-serif'],
+            logo: ['"Saira Stencil One"', 'cursive'],
           },
         }
       }
@@ -124,7 +124,7 @@
     }
 
     .smart-header.scrolled {
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255);
       backdrop-filter: blur(12px) saturate(180%);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
@@ -166,20 +166,28 @@
   <!-- ===================================
        SMART HEADER
        =================================== -->
-  <header class="smart-header fixed top-0 left-0 right-0 z-50 py-6 bg-white/95 backdrop-blur-md shadow-sm">
+  <header class="smart-header fixed top-0 left-0 right-0 z-50 py-6 bg-white shadow-sm">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
       <div class="flex items-center justify-between">
 
-        <a href="/" class="flex items-center gap-5 group">
+        <a href="/" class="flex items-center gap-5 group transition-transform duration-500 hover:-translate-y-1">
           
-          <div class="relative w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center transition-transform duration-700 ease-out group-hover:rotate-[360deg]">
-            <img src="../assets/img/logoLampSF.png" alt="Símbolo" class="w-full h-full object-contain drop-shadow-md">
+          <div class="relative w-24 h-24 lg:w-20 lg:h-20 flex items-center justify-center transition-transform duration-700 ease-out group-hover:rotate-[360deg] group-hover:scale-110">
+              <img src="../assets/img/logoLampSF.png" alt="Símbolo" class="w-full h-full object-contain drop-shadow-md">
           </div>
 
           <div class="flex items-center gap-2 transition-all duration-300 group-hover:tracking-[0.25em]">
-            <span class="font-heading font-extrabold text-lg lg:text-xl text-primary tracking-widest uppercase">ESTUDAS?</span>
+            
+            <span class="font-logo text-2xl lg:text-3xl text-primary tracking-widest uppercase transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:-rotate-3 origin-right">
+                ESTUDAS?
+            </span>
+            
             <div class="h-4 w-px bg-gray-300 mx-1"></div>
-            <span class="font-body font-light text-lg lg:text-xl text-lux-black tracking-widest uppercase group-hover:text-secondary transition-colors">COMIGO!</span>
+            
+            <span class="font-body font-semibold text-lg lg:text-xl text-lux-black tracking-widest uppercase transition-all duration-300 group-hover:text-secondary group-hover:rotate-2 origin-left">
+              COMIGO!
+            </span>
+
           </div>
         </a>
 
@@ -253,24 +261,19 @@
   <!-- ===================================
        HERO SECTION (Parallax)
        =================================== -->
-  <section class="parallax-container relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-    <!-- Parallax Background Image -->
+  <section class="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+    
     <img
       src="../assets/img/imagemcontacto.jpeg"
       alt="Study Center"
-      class="parallax-bg"
-      data-speed="0.4"
+      class="absolute inset-0 w-full h-full object-cover"
     >
 
-    <!-- Gradient Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary-dark/85 to-secondary/70"></div>
-
-    <!-- Hero Content -->
-    <div class="relative z-10 text-center px-6 reveal">
-      <h1 class="font-heading font-black text-6xl lg:text-8xl text-white mb-6 tracking-tight">
+    <div class="relative z-10 text-center px-6 reveal drop-shadow-lg">
+      <h1 class="font-heading font-black text-6xl lg:text-8xl text-white mb-6 tracking-tight" style="text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
         Contactos
       </h1>
-      <p class="font-body font-light text-xl lg:text-2xl text-secondary-light max-w-2xl mx-auto tracking-wide">
+      <p class="font-body font-light text-xl lg:text-2xl text-secondary-light max-w-2xl mx-auto tracking-wide" style="text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
         Vamos Construir Juntos o Sucesso Escolar
       </p>
     </div>
