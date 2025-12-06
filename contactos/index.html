@@ -162,77 +162,98 @@
 
 <body class="font-body bg-lux-white text-lux-black pt-24 lg:pt-32">
 
-  <header class="smart-header fixed top-0 left-0 right-0 z-50 py-4 lg:py-6 bg-white shadow-sm transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+<header class="smart-header fixed top-0 left-0 right-0 z-50 py-3 lg:py-6 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 lg:px-12">
       <div class="flex items-center justify-between">
 
         <a href="/" class="flex items-center gap-3 lg:gap-5 group transition-transform duration-500 hover:-translate-y-1">
           
-          <div class="relative w-16 h-16 lg:w-20 lg:h-20 flex items-center justify-center transition-transform duration-700 ease-out group-hover:rotate-[360deg] group-hover:scale-110">
+          <div class="relative w-14 h-14 lg:w-20 lg:h-20 flex items-center justify-center transition-transform duration-700 ease-out group-hover:rotate-[360deg] group-hover:scale-110">
               <img src="../assets/img/logoLampSF.png" alt="Símbolo" class="w-full h-full object-contain drop-shadow-md">
           </div>
 
-          <div class="flex items-center gap-2 transition-all duration-300 group-hover:tracking-[0.25em]">
-            <span class="font-logo text-xl lg:text-3xl text-primary tracking-widest uppercase transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:-rotate-3 origin-right">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:gap-2 transition-all duration-300 group-hover:tracking-widest lg:group-hover:tracking-[0.25em]">
+            <span class="font-logo text-xl lg:text-3xl text-primary tracking-widest uppercase transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:-rotate-3 origin-center lg:origin-right leading-none">
                 ESTUDAS?
             </span>
-            
-            <div class="h-4 w-px bg-gray-300 mx-1 hidden sm:block"></div>
-            
-            <span class="font-body font-semibold text-sm lg:text-xl text-lux-black tracking-widest uppercase transition-all duration-300 group-hover:text-secondary group-hover:rotate-2 origin-left hidden sm:block">
+            <div class="hidden lg:block h-4 w-px bg-gray-300 mx-1"></div>
+            <span class="font-body font-semibold text-xs lg:text-xl text-lux-black tracking-widest uppercase transition-all duration-300 group-hover:text-secondary group-hover:rotate-2 origin-center lg:origin-left leading-none mt-1 lg:mt-0">
               COMIGO!
             </span>
           </div>
         </a>
 
-        <nav class="hidden lg:flex items-center gap-12">
-          <a href="/" class="group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+        <nav class="hidden lg:flex items-center gap-10 xl:gap-12">
+          <a href="/" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
             Início<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
-          <a href="/sobre" class="group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          <a href="/sobre" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
             Sobre<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
-          <a href="/servicos" class="group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          <a href="/servicos" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
             Serviços<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
-          <a href="/precos" class="group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          <a href="/precos" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
             Preços<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
           </a>
-          <a href="/contactos" class="relative py-2 text-sm font-extrabold text-primary tracking-[0.15em] uppercase cursor-default">
+          <a href="/contactos" class="nav-link relative py-2 text-sm font-extrabold text-primary tracking-[0.15em] uppercase cursor-default">
             Contactos<span class="absolute bottom-0 left-0 w-full h-0.5 bg-secondary shadow-sm"></span>
           </a>
         </nav>
 
-        <button class="lg:hidden flex flex-col items-end gap-1.5 mobile-menu-toggle p-2 group z-50" aria-label="Menu">
-          <span class="w-8 h-0.5 bg-primary transition-all duration-300 group-hover:w-6"></span>
-          <span class="w-6 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
-          <span class="w-4 h-0.5 bg-primary transition-all duration-300 group-hover:w-8"></span>
+        <button class="lg:hidden mobile-menu-toggle p-2 group z-50" aria-label="Menu">
+          <span class="w-8 h-0.5 bg-primary transition-all duration-300 group-hover:bg-secondary"></span>
+          <span class="w-6 h-0.5 bg-primary transition-all duration-300 group-hover:w-8 group-hover:bg-secondary"></span>
+          <span class="w-4 h-0.5 bg-primary transition-all duration-300 group-hover:w-8 group-hover:bg-secondary"></span>
         </button>
 
       </div>
     </div>
   </header>
 
-  <div class="mobile-nav fixed inset-y-0 right-0 w-[85vw] sm:w-80 bg-white/98 backdrop-blur-xl shadow-2xl z-40 lg:hidden transform translate-x-full transition-transform duration-500 ease-in-out border-l border-gray-100">
-    <div class="flex flex-col h-full p-8">
-      <div class="mb-12 flex items-center gap-4 justify-center mt-10">
-         <img src="../assets/img/logoLampSF.png" alt="Logo" class="w-12 h-12 object-contain">
-         <div class="flex flex-col leading-none">
-            <span class="font-heading font-extrabold text-xl text-primary tracking-widest uppercase">ESTUDAS?</span>
-            <span class="font-body font-light text-xl text-secondary tracking-widest uppercase">COMIGO!</span>
+  <div class="mobile-nav fixed inset-y-0 right-0 w-[85vw] sm:w-80 bg-white/98 backdrop-blur-xl shadow-2xl z-40 lg:hidden transform translate-x-full transition-transform duration-500 ease-in-out border-l border-gray-100 flex flex-col">
+
+    <div class="flex flex-col h-full px-8 pb-40 justify-center">
+      
+      <div class="mb-10 flex flex-col items-center gap-3">
+         <div class="relative w-24 h-24 flex items-center justify-center">
+            <img src="../assets/img/logoLampSF.png" alt="Logo" class="w-full h-full object-contain drop-shadow-md">
+         </div>
+         <div class="flex flex-col items-center leading-none gap-1">
+            <span class="font-logo text-3xl text-primary tracking-widest uppercase">ESTUDAS?</span>
+            <span class="font-body font-semibold text-xl text-lux-black tracking-[0.2em] uppercase">COMIGO!</span>
          </div>
       </div>
-      <div class="flex flex-col gap-6 items-center">
-        <a href="/" class="text-xl font-medium text-gray-600 tracking-widest uppercase hover:text-primary transition-colors">Início</a>
-        <a href="/sobre" class="text-xl font-medium text-gray-600 tracking-widest uppercase hover:text-primary transition-colors">Sobre</a>
-        <a href="/servicos" class="text-xl font-medium text-gray-600 tracking-widest uppercase hover:text-primary transition-colors">Serviços</a>
-        <a href="/precos" class="text-xl font-medium text-gray-600 tracking-widest uppercase hover:text-primary transition-colors">Preços</a>
-        <div class="w-12 h-px bg-gray-200 my-2"></div>
-        <a href="/contactos" class="text-xl font-extrabold text-primary tracking-widest uppercase">Contactos</a>
-      </div>
-      <div class="mt-auto text-center pb-8">
-        <p class="text-xs text-gray-400 font-light tracking-wide uppercase">Excelência no Ensino</p>
-      </div>
+
+      <nav class="flex flex-col gap-6 items-center text-center">
+        
+        <a href="/" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Início
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+        <a href="/sobre" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Sobre
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+        <a href="/servicos" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Serviços
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+        <a href="/precos" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Preços
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+        
+        <a href="/contactos" class="nav-link group relative py-1 text-xl font-extrabold text-primary tracking-[0.15em] uppercase">
+          Contactos
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+      </nav>
+
     </div>
   </div>
 
