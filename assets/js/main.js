@@ -1,5 +1,4 @@
 /* ===================================
-   ESTUDAS? COMIGO! - LUXURY INTERACTIONS
    High-End Study Center Interface
    =================================== */
 
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* ===================================
    SMART HEADER (Scroll Direction Detection with Threshold)
-   Hide on scroll down, show only after significant scroll up
    =================================== */
 
 function initSmartHeader() {
@@ -28,48 +26,42 @@ function initSmartHeader() {
   let ticking = false;
 
   // Configurações
-  const SCROLL_UP_THRESHOLD = 150; // Quantos pixels subir para o menu aparecer
-  const HIDE_AFTER = 150; // Só começa a esconder depois de descer 150px
+  const SCROLL_UP_THRESHOLD = 150;
+  const HIDE_AFTER = 150;
 
-  // Ajusta o padding do body para o conteúdo não ficar escondido
+  // Ajusta o padding do body
   const setHeaderHeight = () => {
     const headerHeight = header.offsetHeight;
     document.body.style.paddingTop = `${headerHeight}px`;
   };
   
-  // Inicializa a altura e atualiza se a janela mudar de tamanho
   setHeaderHeight();
   window.addEventListener('resize', setHeaderHeight);
 
-  // A Lógica principal da animação
   const updateHeader = () => {
     const scrollY = window.scrollY;
     const scrollDifference = scrollY - lastScrollY;
 
-    // Adiciona efeito de vidro/sombra se não estiver no topo
     if (scrollY > 50) { 
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
 
-    // Lógica de Scroll (Aparecer/Desaparecer)
     
-    // 1. Se rolar para BAIXO e já passou do topo
     if (scrollDifference > 0 && scrollY > HIDE_AFTER) {
       if (!isHeaderHidden) {
-        header.classList.add('header-hidden'); // O CSS faz a animação suave
+        header.classList.add('header-hidden');
         isHeaderHidden = true;
       }
       scrollDelta = 0;
     }
-    // 2. Se rolar para CIMA
     else if (scrollDifference < 0) {
       scrollDelta += Math.abs(scrollDifference);
 
       if (scrollDelta >= SCROLL_UP_THRESHOLD || scrollY <= HIDE_AFTER) {
         if (isHeaderHidden) {
-          header.classList.remove('header-hidden'); // O CSS faz a animação suave
+          header.classList.remove('header-hidden');
           isHeaderHidden = false;
         }
         scrollDelta = 0;
@@ -80,7 +72,6 @@ function initSmartHeader() {
     ticking = false;
   };
 
-  // O "Ouvinte" que deteta o scroll e chama a função acima
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(updateHeader);
@@ -100,7 +91,6 @@ function initActiveNavigation() {
   navLinks.forEach(link => {
     const href = link.getAttribute('href');
 
-    // Check if this link matches the current path
     if (currentPath === href ||
         currentPath.includes(href) && href !== '/') {
       link.classList.add('active');
