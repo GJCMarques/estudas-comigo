@@ -81,28 +81,32 @@ function initSmartHeader() {
 }
 
 /* ===================================
-   ACTIVE NAVIGATION (Auto-detect current page)
+   ACTIVE NAVIGATION (Versão Corrigida e Estrita)
    =================================== */
 
 function initActiveNavigation() {
   const navLinks = document.querySelectorAll('.nav-link');
-  const currentPath = window.location.pathname;
+  // Normaliza o path (remove a barra final se existir, para evitar erros)
+  const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
 
   navLinks.forEach(link => {
-    const href = link.getAttribute('href');
+    // Remove a classe 'active' de todos primeiro (limpeza de segurança)
+    link.classList.remove('active');
 
-    if (currentPath === href ||
-        currentPath.includes(href) && href !== '/') {
-      link.classList.add('active');
+    // Pega o href do link e normaliza também
+    let href = link.getAttribute('href');
+    if (href && href !== "/") {
+        href = href.replace(/\/$/, "");
     }
 
-    // Special case: highlight "Contactos" when on /contactos
-    if (currentPath.includes('/contactos') && href.includes('/contactos')) {
+    // LÓGICA 1: Comparação Exata (Onde estás = Link)
+    if (currentPath === href) {
       link.classList.add('active');
     }
-
-    // Special case: highlight "Início" when on root
-    if (currentPath === '/' && href === '/') {
+    
+    // LÓGICA 2: Verifica se é uma sub-página (Ex: /contactos/mapa ativa /contactos)
+    // Usa 'startsWith' em vez de 'includes' para ser mais preciso
+    else if (href !== '/' && currentPath.startsWith(href)) {
       link.classList.add('active');
     }
   });
