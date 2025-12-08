@@ -1,291 +1,387 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-PT" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Preços de Explicações e Estudo Acompanhado - Tarifas competitivas e planos personalizados em Vila Nova de Gaia.">
-
+  <meta name="description" content="Conheça a história do Estudas? Comigo! - Um projeto nascido da amizade e da paixão pela educação em Vila Nova de Gaia.">
   <title>Preços - Estudas? Comigo!</title>
 
-  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
-  <link rel="stylesheet" href="../assets/css/reset.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" type="image/x-icon" href="../assets/img/logoLampSF.ico">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-</head>
-<body>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Open+Sans:wght@300;400;600;700&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <header class="header">
-    <div class="container">
-      <a href="/" class="logo">Estudas? Comigo!</a>
-      <nav class="nav-menu">
-        <a href="/">Início</a>
-        <a href="/sobre">Sobre</a>
-        <a href="/servicos">Serviços</a>
-        <a href="/precos">Preços</a>
-        <a href="/contactos">Contactos</a>
-      </nav>
-      <a href="tel:+351938656121" class="btn-cta">Ligar Agora</a>
-      <button class="mobile-menu-toggle" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8A5A3C',
+            secondary: '#F2B734',
+            'lux-black': '#1a1a1a',
+            'lux-white': '#fafafa',
+            'primary-dark': '#6B4430',
+            'secondary-light': '#FFD95A',
+          },
+          fontFamily: {
+            heading: ['Nunito', 'sans-serif'],
+            body: ['Open Sans', 'sans-serif'],
+            logo: ['"Saira Stencil One"', 'cursive'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Glowing Footer Animation */
+    @keyframes glow-pulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 15px rgba(242, 183, 52, 0.6))
+                drop-shadow(0 0 30px rgba(242, 183, 52, 0.4))
+                drop-shadow(0 0 45px rgba(242, 183, 52, 0.2));
+        transform: scale(1);
+      }
+      50% {
+        filter: drop-shadow(0 0 25px rgba(242, 183, 52, 0.8))
+                drop-shadow(0 0 50px rgba(242, 183, 52, 0.6))
+                drop-shadow(0 0 75px rgba(242, 183, 52, 0.4));
+        transform: scale(1.05);
+      }
+    }
+
+    .glow-pulse {
+      animation: glow-pulse 2.5s ease-in-out infinite;
+    }
+
+    /* Parallax Background */
+    .parallax-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      will-change: transform;
+    }
+
+    /* Grayscale Map */
+    .map-grayscale {
+      filter: grayscale(0.4) contrast(1.1) brightness(0.95);
+      transition: filter 0.4s ease;
+    }
+
+    .map-grayscale:hover {
+      filter: grayscale(0) contrast(1) brightness(1);
+    }
+
+    /* Smart Header Transitions */
+    .smart-header {
+      /* Transição suave para transform e opacity */
+      transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
+                  opacity 0.6s ease-in-out,
+                  background-color 0.3s ease,
+                  box-shadow 0.3s ease;
+      opacity: 1;
+      transform: translateY(0);
+      will-change: transform, opacity; /* Ajuda na performance */
+    }
+
+    .smart-header.header-hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .smart-header.scrolled {
+      background-color: rgba(255, 255, 255);
+      backdrop-filter: blur(12px) saturate(180%);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Nav Link Active State (Gerido pelo JS) */
+    .nav-link.active {
+      color: #8A5A3C; /* primary */
+      font-weight: 800;
+    }
+    .nav-link.active span {
+      width: 100%;
+    }
+
+    /* Mobile Menu */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-nav.active {
+      transform: translateX(0);
+    }
+
+    /* Card Hover Glow */
+    .luxury-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .luxury-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px -12px rgba(242, 183, 52, 0.3),
+                  0 0 0 1px rgba(242, 183, 52, 0.2);
+    }
+  </style>
+</head>
+
+<body class="font-body bg-lux-white text-lux-black pt-24 lg:pt-32">
+
+<header class="smart-header fixed top-0 left-0 right-0 z-50 py-3 lg:py-6 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 lg:px-12">
+      <div class="flex items-center justify-between">
+
+        <a href="/" class="flex items-center gap-3 lg:gap-5 group transition-transform duration-500 hover:-translate-y-1">
+          
+          <div class="relative w-14 h-14 lg:w-20 lg:h-20 flex items-center justify-center transition-transform duration-700 ease-out group-hover:rotate-[360deg] group-hover:scale-110">
+              <img src="../assets/img/logoLampSF.png" alt="Símbolo" class="w-full h-full object-contain drop-shadow-md">
+          </div>
+
+          <div class="flex flex-col lg:flex-row lg:items-center lg:gap-2 transition-all duration-300 group-hover:tracking-widest lg:group-hover:tracking-[0.25em]">
+            <span class="font-logo text-xl lg:text-3xl text-primary tracking-widest uppercase transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:-rotate-3 origin-center lg:origin-right leading-none">
+                ESTUDAS?
+            </span>
+            <div class="hidden lg:block h-4 w-px bg-gray-300 mx-1"></div>
+            <span class="font-body font-semibold text-xs lg:text-xl text-lux-black tracking-widest uppercase transition-all duration-300 group-hover:text-secondary group-hover:rotate-2 origin-center lg:origin-left leading-none mt-1 lg:mt-0">
+              COMIGO!
+            </span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-10 xl:gap-12">
+          <a href="/" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Início<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+          <a href="/sobre" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Sobre<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+          <a href="/servicos" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Serviços<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+          <a href="/precos" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Preços<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+          <a href="/contactos" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Contactos<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+        </nav>
+
+        <button class="lg:hidden mobile-menu-toggle p-2 group z-50" aria-label="Menu">
+          <span class="w-8 h-0.5 bg-primary transition-all duration-300 group-hover:bg-secondary"></span>
+          <span class="w-6 h-0.5 bg-primary transition-all duration-300 group-hover:w-8 group-hover:bg-secondary"></span>
+          <span class="w-4 h-0.5 bg-primary transition-all duration-300 group-hover:w-8 group-hover:bg-secondary"></span>
+        </button>
+
+      </div>
     </div>
   </header>
 
-  <section class="hero" style="min-height: 50vh; padding-top: 8rem;">
-    <div class="container">
-      <div class="hero-content reveal">
-        <h1>Planos e Preços</h1>
-        <p>Investimento acessível no futuro académico com total transparência e sem custos escondidos.</p>
+  <div class="mobile-nav fixed inset-y-0 right-0 w-[85vw] sm:w-80 bg-white/98 backdrop-blur-xl shadow-2xl z-40 lg:hidden transform translate-x-full transition-transform duration-500 ease-in-out border-l border-gray-100 flex flex-col">
+
+    <div class="flex flex-col h-full px-8 pb-40 justify-center">
+      
+      <div class="mb-10 flex flex-col items-center gap-3">
+         <div class="relative w-24 h-24 flex items-center justify-center">
+            <img src="../assets/img/logoLampSF.png" alt="Logo" class="w-full h-full object-contain drop-shadow-md">
+         </div>
+         <div class="flex flex-col items-center leading-none gap-1">
+            <span class="font-logo text-3xl text-primary tracking-widest uppercase">ESTUDAS?</span>
+            <span class="font-body font-semibold text-xl text-lux-black tracking-[0.2em] uppercase">COMIGO!</span>
+         </div>
       </div>
+
+      <nav class="flex flex-col gap-6 items-center text-center">
+        
+        <a href="/" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Início
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+        <a href="/sobre" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Sobre
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+        <a href="/servicos" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Serviços
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+        <a href="/precos" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Preços
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+        
+        <a href="/contactos" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Contactos
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+      </nav>
+
     </div>
-  </section>
+  </div>
 
-  <section style="padding: 4rem 0;">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">Tabela de Preços</h2>
-        <p class="section-subtitle">Escolha o plano que melhor se adapta às suas necessidades. Todos os valores incluem materiais de apoio.</p>
-      </div>
 
-      <div class="pricing-grid reveal-stagger">
 
-        <!-- Estudo Acompanhado -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3>Estudo Acompanhado</h3>
-            <p style="color: var(--text-light); font-size: 0.9rem;">Ensino Básico (1º ao 3º Ciclo)</p>
-          </div>
-          <div class="pricing-price">
-            Sob Consulta
-          </div>
-          <ul class="pricing-features">
-            <li>Acompanhamento diário dos TPC</li>
-            <li>Métodos de estudo personalizados</li>
-            <li>Gestão de tempo e organização</li>
-            <li>Turmas reduzidas (máx. 4 alunos)</li>
-            <li>Materiais de apoio incluídos</li>
-            <li>Relatórios de progresso mensais</li>
-          </ul>
-          <a href="/contactos" class="btn btn-outline" style="width: 100%; margin-top: auto;">Pedir Orçamento</a>
+  <footer class="relative bg-gradient-to-br from-primary via-primary-dark to-primary-dark text-white pt-20 lg:pt-32 pb-12 overflow-hidden">
+    <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-10">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-[calc(146%+1.3px)] h-[50px] lg:h-[120px]">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
+        </svg>
+    </div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-secondary/10 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-12 z-10">
+      <div class="flex flex-col items-center mb-12 lg:mb-16 text-center">
+        <div class="group relative w-20 h-20 lg:w-24 lg:h-24 mb-6 transition-transform duration-500 hover:scale-110">
+           <div class="absolute inset-0 bg-secondary/20 blur-xl rounded-full animate-pulse"></div>
+           <div class="relative w-full h-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-full border border-white/10 flex items-center justify-center p-4 shadow-2xl group-hover:border-secondary/50 transition-colors">
+             <img src="../assets/img/logoLampSF.png" alt="Logo" class="w-full h-full object-contain drop-shadow-md group-hover:rotate-[360deg] transition-transform duration-700 ease-out">
+           </div>
         </div>
-
-        <!-- Preparação Exames Nacionais -->
-        <div class="pricing-card featured">
-          <div class="pricing-header">
-            <h3>Preparação Exames Nacionais</h3>
-            <p style="color: var(--text-light); font-size: 0.9rem;">Secundário e Provas de Ingresso</p>
-          </div>
-          <div class="pricing-price">
-            18€ <span>/ hora</span>
-          </div>
-          <ul class="pricing-features">
-            <li>Preparação intensiva e focada</li>
-            <li>Resolução de exames anteriores</li>
-            <li>Simulações de exame em contexto real</li>
-            <li>Estratégias de gestão de tempo</li>
-            <li>Técnicas de gestão de stress</li>
-            <li>Acompanhamento até ao dia do exame</li>
-          </ul>
-          <a href="/contactos" class="btn btn-primary" style="width: 100%; margin-top: auto;">Começar Agora</a>
-        </div>
-
-        <!-- Explicações Gerais -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3>Explicações Individuais</h3>
-            <p style="color: var(--text-light); font-size: 0.9rem;">Ensino Básico e Secundário</p>
-          </div>
-          <div class="pricing-price">
-            Sob Consulta
-          </div>
-          <ul class="pricing-features">
-            <li>Sessões 100% personalizadas</li>
-            <li>Flexibilidade de horários</li>
-            <li>Todas as disciplinas disponíveis</li>
-            <li>Presencial ou online</li>
-            <li>Plano de estudos customizado</li>
-            <li>Acompanhamento contínuo</li>
-          </ul>
-          <a href="/contactos" class="btn btn-outline" style="width: 100%; margin-top: auto;">Pedir Orçamento</a>
-        </div>
-
-        <!-- Maiores de 23 -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3>Provas Maiores de 23</h3>
-            <p style="color: var(--text-light); font-size: 0.9rem;">Preparação Completa</p>
-          </div>
-          <div class="pricing-price">
-            20€ <span>/ hora</span>
-          </div>
-          <ul class="pricing-features">
-            <li>Preparação para todas as disciplinas</li>
-            <li>Português, Matemática, Cultura Geral</li>
-            <li>Provas específicas por área</li>
-            <li>Materiais e recursos incluídos</li>
-            <li>Simulações de prova</li>
-            <li>Apoio na candidatura</li>
-          </ul>
-          <a href="/contactos" class="btn btn-outline" style="width: 100%; margin-top: auto;">Pedir Informações</a>
-        </div>
-
-        <!-- Ensino Superior -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3>Ensino Superior</h3>
-            <p style="color: var(--text-light); font-size: 0.9rem;">Universidade e Politécnico</p>
-          </div>
-          <div class="pricing-price">
-            25€ <span>/ hora</span>
-          </div>
-          <ul class="pricing-features">
-            <li>Matemática e Estatística</li>
-            <li>Física e Química universitária</li>
-            <li>Cálculo e Álgebra Linear</li>
-            <li>Análise de dados (SPSS, R)</li>
-            <li>Preparação para frequências</li>
-            <li>Apoio em projetos académicos</li>
-          </ul>
-          <a href="/contactos" class="btn btn-outline" style="width: 100%; margin-top: auto;">Marcar Sessão</a>
-        </div>
-
-        <!-- Online -->
-        <div class="pricing-card">
-          <div class="pricing-header">
-            <h3>Modalidade Online</h3>
-            <p style="color: var(--text-light); font-size: 0.9rem;">Todas as Disciplinas</p>
-          </div>
-          <div class="pricing-price">
-            Mesmos Valores
-          </div>
-          <ul class="pricing-features">
-            <li>Plataforma digital interativa</li>
-            <li>Partilha de ecrã e quadro virtual</li>
-            <li>Gravação das sessões disponível</li>
-            <li>Sem custos de deslocação</li>
-            <li>Flexibilidade de horário</li>
-            <li>Mesma qualidade do presencial</li>
-          </ul>
-          <a href="/contactos" class="btn btn-outline" style="width: 100%; margin-top: auto;">Experimentar Online</a>
-        </div>
-
-      </div>
-
-      <div style="margin-top: 3rem; padding: 2rem; background: var(--bg-body); border-radius: var(--radius); text-align: center;" class="reveal">
-        <p style="color: var(--text-light); font-size: 1rem; line-height: 1.8;">
-          <strong style="color: var(--primary);">📌 Nota Importante:</strong><br>
-          Os valores apresentados são indicativos e sujeitos a confirmação. Cada aluno é único e por isso criamos planos à medida das necessidades específicas. <br>
-          Contacte-nos para um orçamento personalizado sem compromisso.
+        <h3 class="flex flex-col sm:flex-row items-center gap-2 mb-6">
+          <span class="font-logo text-2xl lg:text-4xl text-white tracking-widest uppercase drop-shadow-lg">ESTUDAS?</span>
+          <span class="font-body font-bold text-2xl lg:text-4xl text-secondary tracking-widest uppercase drop-shadow-lg">COMIGO!</span>
+        </h3>
+        <p class="font-body text-white/80 max-w-lg text-base lg:text-lg leading-relaxed">
+          Seja para ditados ou para estatística a resposta é <span class="text-white font-semibold">Comigo!</span>
         </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-light" style="padding: 4rem 0;">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">Perguntas Frequentes sobre Preços</h2>
-      </div>
-
-      <div style="max-width: 800px; margin: 0 auto;" class="reveal">
-        <div class="service-card" style="margin-bottom: 1.5rem;">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">💳 Quais são as formas de pagamento?</h3>
-          <p>Aceitamos pagamento em dinheiro, transferência bancária e MB WAY. O pagamento é efetuado mensalmente, no início de cada mês.</p>
-        </div>
-
-        <div class="service-card" style="margin-bottom: 1.5rem;">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">📅 Posso pagar apenas pelas sessões que frequentar?</h3>
-          <p>Sim! Para explicações individuais e preparação para exames, pode optar por pagamento por sessão. Para estudo acompanhado, recomendamos planos mensais para garantir continuidade.</p>
-        </div>
-
-        <div class="service-card" style="margin-bottom: 1.5rem;">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">🎁 Existe desconto para irmãos?</h3>
-          <p>Sim! Oferecemos desconto de 10% na mensalidade do segundo irmão inscrito. Para mais informações sobre outros descontos, contacte-nos.</p>
-        </div>
-
-        <div class="service-card" style="margin-bottom: 1.5rem;">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">📚 Os materiais estão incluídos no preço?</h3>
-          <p>Sim! Todos os materiais de apoio, fichas de trabalho, resumos e recursos digitais estão incluídos no valor das sessões.</p>
-        </div>
-
-        <div class="service-card" style="margin-bottom: 1.5rem;">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">🆓 Oferecem aula experimental gratuita?</h3>
-          <p>Sim! A primeira consulta é gratuita e sem compromisso. É uma oportunidade para conhecer os nossos métodos e espaços.</p>
-        </div>
-
-        <div class="service-card">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">❌ E se precisar cancelar uma sessão?</h3>
-          <p>Compreendemos que imprevistos acontecem. Pedimos apenas que avise com 24 horas de antecedência para que possamos remarcar sem custos adicionais.</p>
+        <div class="flex gap-4 mt-8">
+          <a href="https://www.facebook.com/p/EstudasComigo-61578182977979/" class="group w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:bg-secondary hover:border-secondary hover:-translate-y-1 transition-all duration-300 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white/90 group-hover:text-lux-black transition-colors"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/estudascomigo_gaia/" class="group w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:bg-secondary hover:border-secondary hover:-translate-y-1 transition-all duration-300 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white/90 group-hover:text-lux-black transition-colors"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="mailto:estudascomigo@hotmail.com" class="group w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:bg-secondary hover:border-secondary hover:-translate-y-1 transition-all duration-300 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/90 group-hover:text-lux-black transition-colors"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <div class="container-sm text-center reveal">
-      <h2>Pronto para Investir no Sucesso?</h2>
-      <p class="mt-2 mb-3">Marque a sua consulta gratuita e descubra como podemos ajudar a alcançar os objetivos académicos.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="/contactos" class="btn btn-primary">Marcar Consulta Gratuita</a>
-        <a href="tel:+351938656121" class="btn btn-secondary">Ligar: 938 656 121</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-column">
-          <h4>Estudas? Comigo!</h4>
-          <p style="color: rgba(255,255,255,0.7); margin-top: 1rem; line-height: 1.6;">
-            Centro de Explicações e Estudo Acompanhado dedicado a transformar desafios em sucesso escolar.
-          </p>
-          <div class="footer-social">
-            <a href="#" class="social-icon" aria-label="Facebook">📘</a>
-            <a href="#" class="social-icon" aria-label="Instagram">📷</a>
-            <a href="mailto:estudascomigo@hotmail.com" class="social-icon" aria-label="Email">✉️</a>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/10 pt-16">
+        <div class="text-center md:text-left">
+          <h4 class="font-heading font-bold text-xl text-white mb-8 relative inline-block">
+            Links Rápidos
+            <span class="absolute bottom-[-10px] left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-12 h-1 bg-secondary rounded-full"></span>
+          </h4>
+          <div class="flex flex-col gap-4">
+            <a href="/" class="group flex items-center justify-center md:justify-start gap-2 text-white/70 hover:text-white transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              <span class="relative">Início<span class="absolute bottom-0 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full"></span></span>
+            </a>
+            <a href="/sobre" class="group flex items-center justify-center md:justify-start gap-2 text-white/70 hover:text-white transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              <span class="relative">Sobre Nós<span class="absolute bottom-0 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full"></span></span>
+            </a>
+            <a href="/servicos" class="group flex items-center justify-center md:justify-start gap-2 text-white/70 hover:text-white transition-colors">
+               <span class="w-1.5 h-1.5 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              <span class="relative">Serviços<span class="absolute bottom-0 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full"></span></span>
+            </a>
+            <a href="/precos" class="group flex items-center justify-center md:justify-start gap-2 text-white/70 hover:text-white transition-colors">
+               <span class="w-1.5 h-1.5 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              <span class="relative">Preços<span class="absolute bottom-0 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full"></span></span>
+            </a>
+            <a href="/contactos" class="group flex items-center justify-center md:justify-start gap-2 font-bold text-secondary hover:text-white transition-colors">
+               <span class="w-1.5 h-1.5 rounded-full bg-secondary opacity-100"></span>
+               Contactos
+            </a>
           </div>
         </div>
-        <div class="footer-column">
-          <h4>Links Rápidos</h4>
-          <div class="footer-links">
-            <a href="/">Início</a>
-            <a href="/sobre">Sobre Nós</a>
-            <a href="/servicos">Serviços</a>
-            <a href="/precos">Preços</a>
-            <a href="/contactos">Contactos</a>
+        <div class="text-center md:text-left">
+          <h4 class="font-heading font-bold text-xl text-white mb-8 relative inline-block">
+            Contacto
+            <span class="absolute bottom-[-10px] left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-12 h-1 bg-secondary rounded-full"></span>
+          </h4>
+          <div class="flex flex-col gap-5">
+            <div class="group flex items-center justify-center md:justify-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-secondary group-hover:text-lux-black transition-colors cursor-default">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <span class="font-medium text-white/90 cursor-text group-hover:text-secondary transition-colors">938 656 121</span>
+            </div>
+            <div class="group flex items-center justify-center md:justify-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-secondary group-hover:text-lux-black transition-colors cursor-default">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <span class="font-medium text-white/90 cursor-text group-hover:text-secondary transition-colors">estudascomigo@hotmail.com</span>
+            </div>
+            <div class="group flex items-start justify-center md:justify-start gap-3 text-white">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-1 cursor-default group-hover:bg-secondary group-hover:text-lux-black transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <p class="text-white text-sm leading-loose mt-2 cursor-text group-hover:text-secondary transition-colors">
+                Rua D. António Ferreira Gomes 273<br>
+                1º andar, sala 5<br>
+                Vila Nova de Gaia
+              </p>
+            </div>
           </div>
         </div>
-        <div class="footer-column">
-          <h4>Contacto</h4>
-          <div class="footer-links">
-            <a href="tel:+351938656121">📞 938 656 121</a>
-            <a href="mailto:estudascomigo@hotmail.com">✉️ estudascomigo@hotmail.com</a>
-            <p style="color: rgba(255,255,255,0.7); margin-top: 1rem; line-height: 1.6;">
-              Rua D. António Ferreira Gomes 273<br>
-              1º andar, sala 5<br>
-              Vila Nova de Gaia
-            </p>
+        <div class="text-center md:text-left">
+          <h4 class="font-heading font-bold text-xl text-white mb-8 relative inline-block">
+            Horário
+             <span class="absolute bottom-[-10px] left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-12 h-1 bg-secondary rounded-full"></span>
+          </h4>
+          <div class="bg-white/10 rounded-2xl p-6 border border-white/5 hover:border-white/20 transition-colors">
+            <ul class="space-y-4 text-sm">
+              <li class="flex justify-between items-center text-white/80 border-b border-white/10 pb-2">
+                <span>Segunda - Sexta</span>
+                <span class="text-secondary font-bold">09h - 12h | 14h - 19h</span>
+              </li>
+              <li class="flex justify-between items-center text-white/80 border-b border-white/10 pb-2">
+                <span>Sábado</span>
+                <span class="text-secondary font-bold">Horário a Combinar</span>
+              </li>
+              <li class="flex justify-between items-center text-white/60">
+                <span>Domingo</span>
+                <span class="text-red-300 font-semibold">Encerrado</span>
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="footer-column">
-          <h4>Horário</h4>
-          <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">
-            Segunda a Sexta: 14h - 20h<br>
-            Sábado: 9h - 13h<br>
-            Domingo: Encerrado
-          </p>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2024 Estudas? Comigo! Todos os direitos reservados.</p>
+      <div class="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60">
+        <span>
+          © 2024 Estudas? Comigo! Todos os direitos reservados.
+        </span>
+        <div class="flex gap-6">
+            <a href="#" class="hover:text-secondary transition-colors">Termos e Condições</a>
+            <span class="text-white/40">•</span>
+            <a href="#" class="hover:text-secondary transition-colors">Política de Privacidade</a>
+        </div>
       </div>
     </div>
   </footer>
 
   <script src="../assets/js/main.js"></script>
-</body>
+
+</body> 
 </html>
