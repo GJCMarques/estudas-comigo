@@ -99,14 +99,13 @@
 
     /* Smart Header Transitions */
     .smart-header {
-      /* Transição suave para transform e opacity */
       transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
                   opacity 0.6s ease-in-out,
                   background-color 0.3s ease,
                   box-shadow 0.3s ease;
       opacity: 1;
       transform: translateY(0);
-      will-change: transform, opacity; /* Ajuda na performance */
+      will-change: transform, opacity;
     }
 
     .smart-header.header-hidden {
@@ -121,9 +120,9 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
 
-    /* Nav Link Active State (Gerido pelo JS) */
+    /* Nav Link Active State*/
     .nav-link.active {
-      color: #8A5A3C; /* primary */
+      color: #8A5A3C;
       font-weight: 800;
     }
     .nav-link.active span {
@@ -607,7 +606,6 @@
   </div>
 
   <script>
-    // Script simples para a Lightbox
     function openLightbox(src) {
       const lightbox = document.getElementById('lightbox');
       const img = document.getElementById('lightbox-img');
@@ -615,14 +613,12 @@
       img.src = src;
       lightbox.classList.remove('hidden');
       
-      // Pequeno delay para a animação de fade funcionar
       setTimeout(() => {
         lightbox.classList.remove('opacity-0');
         img.classList.remove('scale-95');
         img.classList.add('scale-100');
       }, 10);
       
-      // Impede o scroll da página atrás
       document.body.style.overflow = 'hidden';
     }
 
