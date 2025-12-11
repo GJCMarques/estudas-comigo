@@ -484,28 +484,28 @@
 
         <div class="columns-2 md:columns-3 gap-6 space-y-6">
            
-           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer" onclick="openLightbox('../assets/img/result1.png')">
               <img src="../assets/img/result1.png" alt="Resultado Teste" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
               <div class="absolute inset-0 bg-lux-black/0 group-hover:bg-lux-black/10 transition-colors duration-300"></div>
            </div>
 
-           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 delay-100">
+           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 delay-100 cursor-pointer" onclick="openLightbox('../assets/img/result2.png')">
               <img src="../assets/img/result2.png" alt="Exercícios Corretos" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
            </div>
 
-           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 delay-200">
+           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 delay-200 cursor-pointer" onclick="openLightbox('../assets/img/result3.png')">
               <img src="../assets/img/result3.png" alt="Evolução Escolar" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
            </div>
 
-           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 delay-100 lg:delay-0">
+           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 delay-100 lg:delay-0 cursor-pointer" onclick="openLightbox('../assets/img/result5.png')">
               <img src="../assets/img/result5.png" alt="Sucesso Académico" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
            </div>
            
-           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 delay-200 lg:delay-100">
+           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 delay-200 lg:delay-100 cursor-pointer" onclick="openLightbox('../assets/img/result4.png')">
               <img src="../assets/img/result4.png" alt="Nota Positiva" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
            </div>
 
-           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 delay-300 lg:delay-200">
+           <div class="reveal break-inside-avoid group relative rounded-[2rem] overflow-hidden shadow-lg border-4 border-gray-50 hover:border-secondary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 delay-300 lg:delay-200 cursor-pointer" onclick="openLightbox('../assets/img/result6.png')">
               <img src="../assets/img/result6.png" alt="Bons Resultados" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
            </div>
 
@@ -774,6 +774,47 @@
       </div>
     </div>
   </footer>
+
+  <div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center opacity-0 transition-opacity duration-300" onclick="closeLightbox()">
+    <button class="absolute top-6 right-6 text-white hover:text-secondary transition-colors" onclick="closeLightbox()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    
+    <img id="lightbox-img" src="" alt="Ampliação" class="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      
+      img.src = src;
+      lightbox.classList.remove('hidden');
+      
+      setTimeout(() => {
+        lightbox.classList.remove('opacity-0');
+        img.classList.remove('scale-95');
+        img.classList.add('scale-100');
+      }, 10);
+      
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      
+      lightbox.classList.add('opacity-0');
+      img.classList.remove('scale-100');
+      img.classList.add('scale-95');
+      
+      setTimeout(() => {
+        lightbox.classList.add('hidden');
+        img.src = '';
+        document.body.style.overflow = '';
+      }, 300);
+    }
+  </script>
 
   <script src="../assets/js/main.js"></script>
 
