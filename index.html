@@ -1,281 +1,680 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-PT" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Estudas? Comigo! - Centro de Explicações e Estudo Acompanhado em Vila Nova de Gaia. Transformamos desafios em sucesso escolar.">
-  <meta name="keywords" content="explicações, estudo acompanhado, Vila Nova de Gaia, matemática, português, inglês, exames nacionais">
-  <meta name="author" content="Estudas? Comigo!">
+  <meta name="description" content="Estudas? Comigo! - Centro de Explicações Premium em Vila Nova de Gaia. Apoio escolar, exames nacionais e ensino superior com foco na autonomia e confiança.">
+  <title>Estudas? Comigo! - O Teu Centro de Estudos</title>
 
-  <!-- Open Graph / Social Media -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Estudas? Comigo! - Centro de Explicações">
-  <meta property="og:description" content="Transformamos desafios em sucesso escolar. Explicações e Estudo Acompanhado em Vila Nova de Gaia.">
+  <link rel="icon" type="image/x-icon" href="assets/img/logoLampSF.ico">
 
-  <title>Estudas? Comigo! - Centro de Explicações em Vila Nova de Gaia</title>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-
-  <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Open+Sans:wght@300;400;600;700&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8A5A3C',
+            secondary: '#F2B734',
+            'lux-black': '#1a1a1a',
+            'lux-white': '#fafafa',
+            'primary-dark': '#6B4430',
+            'secondary-light': '#FFD95A',
+          },
+          fontFamily: {
+            heading: ['Nunito', 'sans-serif'],
+            body: ['Open Sans', 'sans-serif'],
+            logo: ['"Saira Stencil One"', 'cursive'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    /* Reveal Animation (Suave) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* HEADER SÓLIDO (Clean & Modern) */
+    .smart-header {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .smart-header.scrolled {
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    
+    .smart-header.header-hidden {
+      transform: translateY(-100%);
+    }
+
+    /* Active Nav Link */
+    .nav-link.active {
+      color: #8A5A3C !important;
+      font-weight: 800;
+    }
+    .nav-link.active span {
+      width: 100% !important;
+    }
+    
+    /* Footer Link Override */
+    footer .nav-link.active {
+       color: #F2B734 !important;
+    }
+
+    /* Mobile Menu */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mobile-nav.active {
+      transform: translateX(0);
+    }
+
+    /* Blob Animation for Hero */
+    @keyframes blob {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+    .animate-blob {
+      animation: blob 7s infinite;
+    }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+  </style>
 </head>
-<body>
 
-  <!-- ===================================
-       HEADER & NAVIGATION
-       =================================== -->
-  <header class="header smart-header">
-    <div class="container">
-      <a href="/" class="logo">Estudas? Comigo!</a>
+<body class="font-body bg-lux-white text-lux-black pt-24 lg:pt-32">
 
-      <nav class="nav-menu">
-        <a href="/">Início</a>
-        <a href="/sobre">Sobre</a>
-        <a href="/servicos">Serviços</a>
-        <a href="/precos">Preços</a>
-        <a href="/contactos">Contactos</a>
-      </nav>
+  <header class="smart-header fixed top-0 left-0 right-0 z-50 py-3 lg:py-6 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 lg:px-12">
+      <div class="flex items-center justify-between">
 
-      <a href="tel:+351938656121" class="btn-cta">Ligar Agora</a>
+        <a href="/" class="flex items-center gap-3 lg:gap-5 group transition-transform duration-500 hover:-translate-y-1">
+          
+          <div class="relative w-14 h-14 lg:w-20 lg:h-20 flex items-center justify-center transition-transform duration-700 ease-out group-hover:rotate-[360deg] group-hover:scale-110">
+              <img src="../assets/img/logoLampSF.png" alt="Símbolo" class="w-full h-full object-contain drop-shadow-md">
+          </div>
 
-      <button class="mobile-menu-toggle" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+          <div class="flex flex-col lg:flex-row lg:items-center lg:gap-2 transition-all duration-300 group-hover:tracking-widest lg:group-hover:tracking-[0.25em]">
+            <span class="font-logo text-xl lg:text-3xl text-primary tracking-widest uppercase transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:-rotate-3 origin-center lg:origin-right leading-none">
+                ESTUDAS?
+            </span>
+            <div class="hidden lg:block h-4 w-px bg-gray-300 mx-1"></div>
+            <span class="font-body font-semibold text-xs lg:text-xl text-lux-black tracking-widest uppercase transition-all duration-300 group-hover:text-secondary group-hover:rotate-2 origin-center lg:origin-left leading-none mt-1 lg:mt-0">
+              COMIGO!
+            </span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-10 xl:gap-12">
+          <a href="/" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Início<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+          <a href="/sobre" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Sobre<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+          <a href="/servicos" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Serviços<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+          <a href="/precos" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Preços<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+          <a href="/contactos" class="nav-link group relative py-2 text-sm font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+            Contactos<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+          </a>
+        </nav>
+
+        <button class="lg:hidden mobile-menu-toggle p-2 group z-50" aria-label="Menu">
+          <span class="w-8 h-0.5 bg-primary transition-all duration-300 group-hover:bg-secondary"></span>
+          <span class="w-6 h-0.5 bg-primary transition-all duration-300 group-hover:w-8 group-hover:bg-secondary"></span>
+          <span class="w-4 h-0.5 bg-primary transition-all duration-300 group-hover:w-8 group-hover:bg-secondary"></span>
+        </button>
+
+      </div>
     </div>
   </header>
 
-  <!-- ===================================
-       HERO SECTION
-       =================================== -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content reveal">
-        <h1>Transformamos desafios em sucesso escolar.</h1>
-        <p>Explicações e Estudo Acompanhado em Vila Nova de Gaia com metodologia personalizada e resultados comprovados.</p>
-        <div class="hero-cta">
-          <a href="/servicos" class="btn btn-primary">Ver Serviços</a>
-          <a href="/contactos" class="btn btn-outline">Marcar Consulta</a>
-        </div>
+  <div class="mobile-nav fixed inset-y-0 right-0 w-[85vw] sm:w-80 bg-white/98 backdrop-blur-xl shadow-2xl z-40 lg:hidden transform translate-x-full transition-transform duration-500 ease-in-out border-l border-gray-100 flex flex-col">
+
+    <div class="flex flex-col h-full px-8 pb-40 justify-center">
+      
+      <div class="mb-10 flex flex-col items-center gap-3">
+         <div class="relative w-24 h-24 flex items-center justify-center">
+            <img src="../assets/img/logoLampSF.png" alt="Logo" class="w-full h-full object-contain drop-shadow-md">
+         </div>
+         <div class="flex flex-col items-center leading-none gap-1">
+            <span class="font-logo text-3xl text-primary tracking-widest uppercase">ESTUDAS?</span>
+            <span class="font-body font-semibold text-xl text-lux-black tracking-[0.2em] uppercase">COMIGO!</span>
+         </div>
       </div>
+
+      <nav class="flex flex-col gap-6 items-center text-center">
+        
+        <a href="/" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Início
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+        <a href="/sobre" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Sobre
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+        <a href="/servicos" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Serviços
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+        <a href="/precos" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Preços
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+        
+        <a href="/contactos" class="nav-link group relative py-1 text-xl font-bold text-gray-600 tracking-[0.15em] uppercase hover:text-primary transition-colors">
+          Contactos
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 ease-out group-hover:w-full"></span>
+        </a>
+
+      </nav>
+
+    </div>
+  </div>
+
+<section class="relative pt-10 pb-20 lg:pt-20 lg:pb-30 px-6 overflow-hidden flex items-center min-h-[85vh]">
+    
+    <div class="absolute -left-30 top-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-5 pointer-events-none z-0">
+        <img src="assets/img/logoLampSF.png" class="w-full h-full object-contain rotate-12">
+    </div>
+
+    <div class="absolute top-0 right-0 -translate-y-12 translate-x-12 w-96 h-96 bg-secondary/10 rounded-full blur-3xl opacity-60 animate-blob"></div>
+    <div class="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-60 animate-blob animation-delay-2000"></div>
+
+    <div class="max-w-7xl mx-auto w-full relative z-10">
+       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          <div class="reveal relative text-center lg:text-left">
+             
+              <h1 class="font-heading font-black text-6xl sm:text-7xl lg:text-8xl text-lux-black leading-[0.9] mb-8">
+                Muito mais do que <br>
+                <span class="relative inline-block text-primary mt-2">
+                  apenas notas.
+                  <svg class="absolute w-full lg:w-[70%] h-3 lg:h-4 -bottom-4 lg:-bottom-5 left-0 lg:-left-2 text-secondary" viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.00025 6.99997C2.00025 6.99997 101.5 0.999992 198.5 2.50001" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </h1>
+             
+             <p class="font-body text-xl md:text-2xl text-gray-500 leading-relaxed mb-12 max-w-lg mx-auto lg:mx-0 font-light">
+                Acreditamos no potencial de cada aluno. Inspiramos confiança e desenvolvemos autonomia para transformar desafios em sucesso real.
+             </p>
+             
+             <div class="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+                
+                <a href="/contactos" class="group relative inline-flex items-center justify-center px-10 py-4 bg-primary text-white font-bold tracking-widest uppercase rounded-full overflow-hidden shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1">
+                   <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
+                   <span class="relative z-10 flex items-center gap-3">
+                     Marcar Visita 
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                   </span>
+                </a>
+                
+                <a href="/servicos" class="group relative inline-flex items-center justify-center px-10 py-4 bg-transparent border-2 border-primary/20 text-primary font-bold tracking-widest uppercase rounded-full overflow-hidden hover:border-secondary hover:text-secondary hover:bg-secondary/5 transition-all duration-300">
+                   <span class="relative z-10 flex items-center gap-3">
+                     Ver Serviços
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                   </span>
+                </a>
+
+             </div>
+
+          </div>
+
+          <div class="reveal relative z-10 lg:h-[650px] flex items-center justify-center">
+             
+             <div class="absolute -inset-4 border-4 border-secondary/40 bg-secondary/5 rounded-[4rem] transform rotate-6 transition-transform duration-700 group-hover:rotate-3 shadow-sm backdrop-blur-sm"></div>
+             
+             <div class="relative w-full h-full rounded-[4rem] overflow-hidden shadow-2xl shadow-lux-black/10 rotate-[-2deg] hover:rotate-0 transition-transform duration-700 bg-white group">
+                <img src="assets/img/fundadoras.png" alt="Centro de Estudos" class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-60"></div>
+             </div>
+          </div>
+
+       </div>
     </div>
   </section>
 
-  <!-- ===================================
-       STATS SECTION (Animated Counters)
-       =================================== -->
-  <section class="stats">
-    <div class="container">
-      <div class="stats-grid reveal-stagger">
-        <div class="stat-card">
-          <div class="stat-number" data-target="+10">0</div>
-          <div class="stat-label">Anos de Experiência</div>
+<section class="py-24 px-6 bg-orange-50 relative overflow-hidden">
+     <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white via-transparent to-transparent opacity-60"></div>
+
+     <div class="max-w-7xl mx-auto reveal relative z-10">
+        
+        <div class="text-center mb-16">
+           <span class="text-secondary font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Navegação Rápida</span>
+           <h2 class="font-heading font-black text-4xl lg:text-5xl text-primary mb-6">O Que Procura?</h2>
+           <div class="flex items-center justify-center gap-4 text-gray-400">
+              <span class="w-12 h-px bg-secondary/50"></span>
+              <p class="font-body italic font-medium text-gray-500">Soluções para todas as etapas</p>
+              <span class="w-12 h-px bg-secondary/50"></span>
+           </div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number" data-target="+500">0</div>
-          <div class="stat-label">Alunos Apoiados</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(200px, auto)]">
+           
+           <a href="/servicos" class="group relative bg-white p-8 rounded-[2.5rem] shadow-lg border border-gray-100 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between h-[300px]">
+              <div class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div>
+                 <h3 class="font-heading font-bold text-2xl text-lux-black mb-3 group-hover:text-primary transition-colors">Apoio ao Estudo</h3>
+                 <p class="text-sm text-gray-500 leading-relaxed">Acompanhamento diário nos TPC e métodos de estudo.</p>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center self-end text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+           </a>
+
+           <a href="/servicos" class="md:col-span-2 group relative bg-primary text-white p-10 rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-2 transition-all duration-300 flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden h-[300px]">
+              <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+              <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+              
+              <div class="relative z-10 flex flex-col justify-between h-full items-start w-full">
+                 <div class="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6 text-white group-hover:bg-white group-hover:text-primary transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                 </div>
+                 <div>
+                    <h3 class="font-heading font-black color text-3xl text-secondary/80 md:text-4xl mb-3">Explicações</h3>
+                    <p class="text-white/80 max-w-md text-sm leading-relaxed">Individuais ou em Grupo. Do 1º Ciclo ao Ensino Superior, focadas nas dúvidas específicas.</p>
+                 </div>
+              </div>
+              <div class="relative z-10 hidden md:flex items-center justify-center h-full">
+                 <div class="w-14 h-14 rounded-full border-2 border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-all duration-300 group-hover:border-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                 </div>
+              </div>
+           </a>
+
+           <a href="/servicos" class="group relative bg-secondary/10 p-8 rounded-[2.5rem] border border-secondary/20 hover:border-secondary hover:bg-secondary/20 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between h-[300px]">
+              <div class="w-16 h-16 rounded-2xl bg-white text-secondary-dark flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <div>
+                 <h3 class="font-heading font-bold text-2xl text-secondary-dark mb-3">Exames</h3>
+                 <p class="text-sm text-gray-600 leading-relaxed">Preparação intensiva para Nacionais e M23.</p>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center self-end text-secondary-dark group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+           </a>
+
+           <a href="/contactos" class="md:col-span-2 group relative bg-white p-8 rounded-[2.5rem] border border-gray-100 hover:border-primary/30 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex items-center justify-between h-[300px] overflow-hidden">
+               <div class="absolute right-0 top-0 w-2/3 h-full">
+                  <img src="assets/img/imagemcontacto.jpeg" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" style="mask-image: linear-gradient(to right, transparent, black);">
+                  <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+               </div>
+               
+               <div class="relative z-10 max-w-sm">
+                  <div class="inline-block px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest rounded-full mb-4">Dúvidas?</div>
+                  <h3 class="font-heading font-black text-3xl text-lux-black mb-4 group-hover:text-primary transition-colors">Fale Connosco</h3>
+                  <p class="text-gray-500 text-sm mb-8 leading-relaxed">Estamos prontos para ajudar a traçar o plano perfeito para si.</p>
+                  
+                  <span class="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group-hover:gap-4 transition-all duration-300">
+                     Enviar Mensagem
+                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </span>
+               </div>
+           </a>
+
         </div>
-        <div class="stat-card">
-          <div class="stat-number" data-target="98%">0%</div>
-          <div class="stat-label">Taxa de Sucesso</div>
+        
+        <div class="mt-16 text-center">
+           <a href="/servicos" class="inline-block text-primary font-bold tracking-widest uppercase text-xs border-b-2 border-primary/20 hover:border-secondary hover:text-secondary transition-all pb-1">
+               Ver todos os serviços
+           </a>
         </div>
-      </div>
-    </div>
+
+     </div>
   </section>
 
-  <!-- ===================================
-       PROOF SECTION (Wall of Fame)
-       =================================== -->
-  <section class="proof">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">Resultados que Falam</h2>
-        <p class="section-subtitle">Os nossos alunos alcançam excelência académica através de métodos comprovados e acompanhamento personalizado.</p>
-      </div>
+<section class="py-24 px-6 bg-white relative overflow-hidden">
+     <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_left,_var(--tw-gradient-stops))] from-orange-50 via-transparent to-transparent opacity-60 pointer-events-none"></div>
 
-      <div class="proof-grid reveal-stagger">
-        <div class="proof-card">
-          <div class="proof-grade">18</div>
-          <div class="proof-label">Valores - Matemática</div>
+     <div class="max-w-7xl mx-auto relative z-10 reveal">
+        
+        <div class="text-center mb-16">
+           <span class="text-secondary font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Investimento no Futuro</span>
+           <h2 class="font-heading font-black text-3xl lg:text-5xl text-primary mb-6">Planos à Medida</h2>
+           
+           <div class="flex items-center justify-center gap-4 text-gray-400">
+              <span class="w-12 h-px bg-secondary/50"></span>
+              <p class="font-body italic font-medium text-gray-500">Transparência e flexibilidade</p>
+              <span class="w-12 h-px bg-secondary/50"></span>
+           </div>
         </div>
-        <div class="proof-card">
-          <div class="proof-grade">19</div>
-          <div class="proof-label">Valores - Físico-Química</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+           
+           <div class="group p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(242,183,52,0.3)] hover:border-secondary/60 transition-all duration-500 ease-out hover:-translate-y-2 flex flex-col justify-between relative z-10 hover:z-20">
+              <div>
+                  <h4 class="font-heading font-black text-2xl text-lux-black mb-3 group-hover:text-primary transition-colors duration-300">Apoio ao Estudo</h4>
+                  <div class="w-12 h-1.5 bg-secondary rounded-full mb-6 transition-all duration-500 group-hover:w-20"></div>
+                  <p class="text-gray-600 text-sm mb-8 leading-relaxed font-medium">
+                     Acompanhamento diário, TPC e métodos de estudo. Ideal para criar rotinas sólidas.
+                  </p>
+              </div>
+              <div>
+                  <div class="flex items-center gap-2 mb-8 bg-orange-50 w-fit px-4 py-2 rounded-lg transition-colors group-hover:bg-secondary/20">
+                     <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                     <span class="text-xs font-bold text-primary uppercase tracking-wider">Sob Consulta</span>
+                  </div>
+                  <a href="/precos" class="block w-full py-4 rounded-2xl border-2 border-primary/10 text-primary font-bold text-center text-xs uppercase tracking-widest hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-lg">
+                     Ver Detalhes
+                  </a>
+              </div>
+           </div>
+
+           <div class="group p-10 rounded-[2.5rem] bg-primary text-white shadow-2xl shadow-primary/20 transform md:-translate-y-4 hover:shadow-[0_30px_60px_-15px_rgba(138,90,60,0.5)] hover:md:-translate-y-6 transition-all duration-500 ease-out relative overflow-hidden flex flex-col justify-between z-20">
+              <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-bl-full -mr-10 -mt-10 transition-transform duration-700 group-hover:scale-125 group-hover:rotate-6"></div>
+              
+              <div class="relative z-10">
+                  <div class="flex justify-between items-start mb-2">
+                      <h4 class="font-heading font-black text-secondary/80 text-2xl mb-3">Explicações</h4>
+                      <span class="bg-white/20 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest backdrop-blur-md group-hover:bg-secondary group-hover:text-lux-black transition-colors duration-300">Popular</span>
+                  </div>
+                  <div class="w-12 h-1.5 bg-white rounded-full mb-6 transition-all duration-500 group-hover:w-20 group-hover:bg-secondary"></div>
+                  <p class="text-white/90 text-sm mb-8 leading-relaxed font-medium">
+                     Foco total nas dificuldades específicas. Individual ou em pequenos grupos.
+                  </p>
+              </div>
+              <div class="relative z-10">
+                  <div class="flex items-center gap-2 mb-8 bg-white/10 w-fit px-4 py-2 rounded-lg backdrop-blur-sm transition-colors group-hover:bg-white/20">
+                     <span class="w-2 h-2 rounded-full bg-white group-hover:bg-secondary transition-colors"></span>
+                     <span class="text-xs font-bold text-white uppercase tracking-wider">Sob Consulta</span>
+                  </div>
+                  <a href="/precos" class="block w-full py-4 rounded-2xl bg-white text-primary font-bold text-center text-xs uppercase tracking-widest hover:bg-secondary hover:text-lux-black hover:scale-105 transition-all duration-300 shadow-lg">
+                     Ver Detalhes
+                  </a>
+              </div>
+           </div>
+
+           <div class="group p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(242,183,52,0.3)] hover:border-secondary/60 transition-all duration-500 ease-out hover:-translate-y-2 flex flex-col justify-between relative z-10 hover:z-20">
+              <div>
+                  <h4 class="font-heading font-black text-2xl text-lux-black mb-3 group-hover:text-primary transition-colors duration-300">Exames</h4>
+                  <div class="w-12 h-1.5 bg-secondary rounded-full mb-6 transition-all duration-500 group-hover:w-20"></div>
+                  <p class="text-gray-600 text-sm mb-8 leading-relaxed font-medium">
+                     Preparação intensiva e estratégica para Exames Nacionais e Maiores de 23.
+                  </p>
+              </div>
+              <div>
+                  <div class="flex items-baseline gap-1 mb-8 transition-transform group-hover:translate-x-1">
+                     <span class="text-gray-400 text-[10px] font-bold uppercase mr-2 tracking-wider">Desde</span>
+                     <span class="font-heading font-black text-4xl text-primary group-hover:text-secondary transition-colors">€18</span>
+                     <span class="text-gray-400 font-bold text-sm">/hora</span>
+                  </div>
+                  <a href="/precos" class="block w-full py-4 rounded-2xl border-2 border-primary/10 text-primary font-bold text-center text-xs uppercase tracking-widest hover:bg-primary hover:text-white hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-lg">
+                     Ver Detalhes
+                  </a>
+              </div>
+           </div>
+
         </div>
-        <div class="proof-card">
-          <div class="proof-grade">A+</div>
-          <div class="proof-label">Excellent - Inglês</div>
-        </div>
-        <div class="proof-card">
-          <div class="proof-grade">17</div>
-          <div class="proof-label">Valores - Português</div>
-        </div>
-        <div class="proof-card">
-          <div class="proof-grade">20</div>
-          <div class="proof-label">Valores - Biologia</div>
-        </div>
-        <div class="proof-card">
-          <div class="proof-grade">18</div>
-          <div class="proof-label">Valores - Economia</div>
-        </div>
-      </div>
-    </div>
+
+     </div>
   </section>
 
-  <!-- ===================================
-       SUBJECT TICKER (Infinite Marquee)
-       =================================== -->
-  <section class="ticker">
-    <div class="ticker-track">
-      <div class="ticker-item">Matemática</div>
-      <div class="ticker-item">Físico-Química</div>
-      <div class="ticker-item">Inglês</div>
-      <div class="ticker-item">Biologia</div>
-      <div class="ticker-item">Português</div>
-      <div class="ticker-item">Economia</div>
-      <div class="ticker-item">Francês</div>
-      <div class="ticker-item">Espanhol</div>
-    </div>
+
+
+<section class="py-24 px-6 bg-white relative overflow-hidden">
+     <div class="absolute right-0 top-0 w-[800px] h-[800px] bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent pointer-events-none"></div>
+
+     <div class="max-w-7xl mx-auto relative z-10 reveal">
+        
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+           <div class="max-w-xl">
+              <span class="text-secondary font-bold tracking-[0.2em] uppercase text-sm mb-4 block">A Nossa Casa</span>
+              <h2 class="font-heading font-black text-4xl lg:text-5xl text-primary mb-6 leading-tight">Um ambiente que <br><span class="text-secondary">inspira.</span></h2>
+              <p class="text-gray-600 text-lg leading-relaxed font-light">
+                 Luz natural, conforto e silêncio. O cenário perfeito para a concentração e aprendizagem.
+              </p>
+           </div>
+           
+           <a href="/sobre" class="group flex items-center gap-3 text-primary font-bold hover:text-secondary transition-colors pb-2">
+              <span class="tracking-widest uppercase text-sm border-b-2 border-primary/20 group-hover:border-secondary pb-1">Conhecer o Espaço</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+           </a>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6 h-auto lg:h-[500px]">
+           
+           <div class="lg:w-7/12 relative rounded-[3rem] overflow-hidden group shadow-xl cursor-pointer hover:shadow-2xl transition-all duration-500" onclick="openLightbox('../assets/img/main.jpeg')">
+              <img src="assets/img/main.jpeg" alt="Sala Principal" class="w-full h-[400px] lg:h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+              
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-10">
+                 <p class="text-white font-heading font-bold text-3xl translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Sala de Estudo</p>
+                 <p class="text-white/80 text-sm mt-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">Espaço amplo com luz natural</p>
+              </div>
+           </div>
+
+           <div class="lg:w-5/12 flex flex-col gap-6">
+              
+              <div class="relative h-[250px] lg:h-1/2 rounded-[3rem] overflow-hidden group shadow-lg cursor-pointer" onclick="openLightbox('../assets/img/sobrefoto.jpg')">
+                 <img src="assets/img/sobrefoto.jpg" alt="Zona de Leitura" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                 <div class="absolute inset-0 bg-lux-black/10 group-hover:bg-transparent transition-colors"></div>
+              </div>
+
+              <div class="flex gap-6 h-[250px] lg:h-1/2">
+                 <div class="w-1/2 relative rounded-[2.5rem] overflow-hidden group shadow-lg cursor-pointer" onclick="openLightbox('../assets/img/fof.png')">
+                    <img src="assets/img/fof.png" alt="Sala Privada 1" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                 </div>
+                 
+                 <div class="w-1/2 relative rounded-[2.5rem] overflow-hidden group shadow-lg cursor-pointer" onclick="openLightbox('../assets/img/estudos.jpeg')">
+                    <img src="assets/img/estudos.jpeg" alt="Sala Privada 2" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                 </div>
+              </div>
+
+           </div>
+
+        </div>
+
+     </div>
   </section>
 
-  <!-- ===================================
-       WHY CHOOSE US SECTION
-       =================================== -->
-  <section class="services">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">Porquê Escolher-nos?</h2>
-        <p class="section-subtitle">Metodologia exclusiva que foca na autonomia e confiança do aluno, com resultados comprovados há mais de uma década.</p>
-      </div>
-
-      <div class="services-grid reveal-stagger">
-        <div class="service-card">
-          <span class="service-icon">🎯</span>
-          <h3>Acompanhamento Personalizado</h3>
-          <p>Cada aluno é único. Adaptamos os nossos métodos às suas necessidades específicas para garantir o máximo aproveitamento.</p>
-        </div>
-
-        <div class="service-card">
-          <span class="service-icon">📚</span>
-          <h3>Métodos Comprovados</h3>
-          <p>Estratégias de estudo testadas e validadas que desenvolvem autonomia e confiança académica sustentável.</p>
-        </div>
-
-        <div class="service-card">
-          <span class="service-icon">🏆</span>
-          <h3>Resultados Garantidos</h3>
-          <p>98% de taxa de sucesso. Os nossos alunos não só melhoram as notas, como desenvolvem paixão pela aprendizagem.</p>
-        </div>
-
-        <div class="service-card">
-          <span class="service-icon">🌟</span>
-          <h3>Ambiente Premium</h3>
-          <p>Espaços luminosos, climatizados e pensados para maximizar a concentração e o bem-estar durante o estudo.</p>
-        </div>
-
-        <div class="service-card">
-          <span class="service-icon">💻</span>
-          <h3>Flexibilidade Total</h3>
-          <p>Sessões presenciais ou online, em grupo ou individuais. Ajustamos ao ritmo e preferências do aluno.</p>
-        </div>
-
-        <div class="service-card">
-          <span class="service-icon">🎓</span>
-          <h3>Preparação Completa</h3>
-          <p>Do ensino básico ao superior, incluindo preparação específica para Exames Nacionais e Maiores de 23.</p>
-        </div>
-      </div>
-
-      <div class="text-center mt-4">
-        <a href="/servicos" class="btn btn-primary">Conhecer Todos os Serviços</a>
-      </div>
+  <footer class="relative bg-gradient-to-br from-primary via-primary-dark to-primary-dark text-white pt-20 lg:pt-32 pb-12 overflow-hidden">
+    <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-10">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-[calc(146%+1.3px)] h-[50px] lg:h-[120px]">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-white"></path>
+        </svg>
     </div>
-  </section>
-
-  <!-- ===================================
-       CTA SECTION
-       =================================== -->
-  <section class="cta-section bg-light">
-    <div class="container-sm text-center reveal">
-      <h2>Pronto para Transformar o Sucesso Escolar?</h2>
-      <p class="mt-2 mb-3">Marque uma consulta gratuita e descubra como podemos ajudar a alcançar os objetivos académicos.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="/contactos" class="btn btn-primary">Marcar Consulta Gratuita</a>
-        <a href="tel:+351938656121" class="btn btn-secondary">Ligar Agora</a>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-secondary/10 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-12 z-10">
+      <div class="flex flex-col items-center mb-12 lg:mb-16 text-center">
+        <div class="group relative w-20 h-20 lg:w-24 lg:h-24 mb-6 transition-transform duration-500 hover:scale-110">
+           <div class="absolute inset-0 bg-secondary/20 blur-xl rounded-full animate-pulse"></div>
+           <div class="relative w-full h-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-full border border-white/10 flex items-center justify-center p-4 shadow-2xl group-hover:border-secondary/50 transition-colors">
+             <img src="../assets/img/logoLampSF.png" alt="Logo" class="w-full h-full object-contain drop-shadow-md group-hover:rotate-[360deg] transition-transform duration-700 ease-out">
+           </div>
+        </div>
+        <h3 class="flex flex-col sm:flex-row items-center gap-2 mb-6">
+          <span class="font-logo text-2xl lg:text-4xl text-white tracking-widest uppercase drop-shadow-lg">ESTUDAS?</span>
+          <span class="font-body font-bold text-2xl lg:text-4xl text-secondary tracking-widest uppercase drop-shadow-lg">COMIGO!</span>
+        </h3>
+        <p class="font-body text-white/80 max-w-lg text-base lg:text-lg leading-relaxed">
+          Seja para ditados ou para estatística a resposta é <span class="text-white font-semibold">Comigo!</span>
+        </p>
+        <div class="flex gap-4 mt-8">
+          <a href="https://www.facebook.com/p/EstudasComigo-61578182977979/" class="group w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:bg-secondary hover:border-secondary hover:-translate-y-1 transition-all duration-300 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white/90 group-hover:text-lux-black transition-colors"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/estudascomigo_gaia/" class="group w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:bg-secondary hover:border-secondary hover:-translate-y-1 transition-all duration-300 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white/90 group-hover:text-lux-black transition-colors"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="mailto:estudascomigo@hotmail.com" class="group w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:bg-secondary hover:border-secondary hover:-translate-y-1 transition-all duration-300 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/90 group-hover:text-lux-black transition-colors"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===================================
-       FOOTER
-       =================================== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <!-- Brand Column -->
-        <div class="footer-column">
-          <h4>Estudas? Comigo!</h4>
-          <p style="color: rgba(255,255,255,0.7); margin-top: 1rem; line-height: 1.6;">
-            Centro de Explicações e Estudo Acompanhado dedicado a transformar desafios em sucesso escolar.
-          </p>
-          <div class="footer-social">
-            <a href="#" class="social-icon" aria-label="Facebook">📘</a>
-            <a href="#" class="social-icon" aria-label="Instagram">📷</a>
-            <a href="mailto:estudascomigo@hotmail.com" class="social-icon" aria-label="Email">✉️</a>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/10 pt-16">
+        <div class="text-center md:text-left">
+          <h4 class="font-heading font-bold text-xl text-white mb-8 relative inline-block">
+            Links Rápidos
+            <span class="absolute bottom-[-10px] left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-12 h-1 bg-secondary rounded-full"></span>
+          </h4>
+          <div class="flex flex-col gap-4">
+            <a href="/" class="group flex items-center justify-center md:justify-start gap-2 font-bold text-secondary hover:text-white transition-colors">
+               <span class="w-1.5 h-1.5 rounded-full bg-secondary opacity-100"></span>
+               Início
+            </a>
+            <a href="/sobre" class="group flex items-center justify-center md:justify-start gap-2 text-white/70 hover:text-white transition-colors">
+               <span class="w-1.5 h-1.5 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              <span class="relative">Sobre<span class="absolute bottom-0 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full"></span></span>
+            </a>
+            <a href="/servicos" class="group flex items-center justify-center md:justify-start gap-2 text-white/70 hover:text-white transition-colors">
+               <span class="w-1.5 h-1.5 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              <span class="relative">Serviços<span class="absolute bottom-0 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full"></span></span>
+            </a>
+            <a href="/precos" class="group flex items-center justify-center md:justify-start gap-2 text-white/70 hover:text-white transition-colors">
+               <span class="w-1.5 h-1.5 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              <span class="relative">Preços<span class="absolute bottom-0 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full"></span></span>
+            </a>
+            <a href="/contactos" class="group flex items-center justify-center md:justify-start gap-2 text-white/70 hover:text-white transition-colors">
+               <span class="w-1.5 h-1.5 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              <span class="relative">Contactos<span class="absolute bottom-0 left-0 w-0 h-px bg-secondary transition-all duration-300 group-hover:w-full"></span></span>
+            </a>
           </div>
         </div>
-
-        <!-- Links Column -->
-        <div class="footer-column">
-          <h4>Links Rápidos</h4>
-          <div class="footer-links">
-            <a href="/">Início</a>
-            <a href="/sobre">Sobre Nós</a>
-            <a href="/servicos">Serviços</a>
-            <a href="/precos">Preços</a>
-            <a href="/contactos">Contactos</a>
+        <div class="text-center md:text-left">
+          <h4 class="font-heading font-bold text-xl text-white mb-8 relative inline-block">
+            Contacto
+            <span class="absolute bottom-[-10px] left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-12 h-1 bg-secondary rounded-full"></span>
+          </h4>
+          <div class="flex flex-col gap-5">
+            <div class="group flex items-center justify-center md:justify-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-secondary group-hover:text-lux-black transition-colors cursor-default">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <span class="font-medium text-white/90 cursor-text group-hover:text-secondary transition-colors">938 656 121</span>
+            </div>
+            <div class="group flex items-center justify-center md:justify-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-secondary group-hover:text-lux-black transition-colors cursor-default">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <span class="font-medium text-white/90 cursor-text group-hover:text-secondary transition-colors">estudascomigo@hotmail.com</span>
+            </div>
+            <div class="group flex items-start justify-center md:justify-start gap-3 text-white">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-1 cursor-default group-hover:bg-secondary group-hover:text-lux-black transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <p class="text-white text-sm leading-loose mt-2 cursor-text group-hover:text-secondary transition-colors">
+                Rua D. António Ferreira Gomes 273<br>
+                1º andar, sala 5<br>
+                Vila Nova de Gaia
+              </p>
+            </div>
           </div>
         </div>
-
-        <!-- Contact Column -->
-        <div class="footer-column">
-          <h4>Contacto</h4>
-          <div class="footer-links">
-            <a href="tel:+351938656121">📞 938 656 121</a>
-            <a href="mailto:estudascomigo@hotmail.com">✉️ estudascomigo@hotmail.com</a>
-            <p style="color: rgba(255,255,255,0.7); margin-top: 1rem; line-height: 1.6;">
-              Rua D. António Ferreira Gomes 273<br>
-              1º andar, sala 5<br>
-              Vila Nova de Gaia
-            </p>
+        <div class="text-center md:text-left">
+          <h4 class="font-heading font-bold text-xl text-white mb-8 relative inline-block">
+            Horário
+             <span class="absolute bottom-[-10px] left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 w-12 h-1 bg-secondary rounded-full"></span>
+          </h4>
+          <div class="bg-white/10 rounded-2xl p-6 border border-white/5 hover:border-white/20 transition-colors">
+            <ul class="space-y-4 text-sm">
+              <li class="flex justify-between items-center text-white/80 border-b border-white/10 pb-2">
+                <span>Segunda - Sexta</span>
+                <span class="text-secondary font-bold">09h - 12h | 14h - 19h</span>
+              </li>
+              <li class="flex justify-between items-center text-white/80 border-b border-white/10 pb-2">
+                <span>Sábado</span>
+                <span class="text-secondary font-bold">Horário a Combinar</span>
+              </li>
+              <li class="flex justify-between items-center text-white/60">
+                <span>Domingo</span>
+                <span class="text-red-300 font-semibold">Encerrado</span>
+              </li>
+            </ul>
           </div>
-        </div>
-
-        <!-- Schedule Column -->
-        <div class="footer-column">
-          <h4>Horário</h4>
-          <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">
-            Segunda a Sexta: 14h - 20h<br>
-            Sábado: 9h - 13h<br>
-            Domingo: Encerrado
-          </p>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2024 Estudas? Comigo! Todos os direitos reservados.</p>
+      <div class="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60">
+        <span>
+          © 2024 Estudas? Comigo! Todos os direitos reservados.
+        </span>
+        <div class="flex gap-6">
+            <a href="#" class="hover:text-secondary transition-colors">Termos e Condições</a>
+            <span class="text-white/40">•</span>
+            <a href="#" class="hover:text-secondary transition-colors">Política de Privacidade</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- JavaScript -->
+  <div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center opacity-0 transition-opacity duration-300" onclick="closeLightbox()">
+    <button class="absolute top-6 right-6 text-white hover:text-secondary transition-colors" onclick="closeLightbox()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    
+    <img id="lightbox-img" src="" alt="Ampliação" class="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      
+      img.src = src;
+      lightbox.classList.remove('hidden');
+      
+      setTimeout(() => {
+        lightbox.classList.remove('opacity-0');
+        img.classList.remove('scale-95');
+        img.classList.add('scale-100');
+      }, 10);
+      
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      
+      lightbox.classList.add('opacity-0');
+      img.classList.remove('scale-100');
+      img.classList.add('scale-95');
+      
+      setTimeout(() => {
+        lightbox.classList.add('hidden');
+        img.src = '';
+        document.body.style.overflow = '';
+      }, 300);
+    }
+  </script>
+
   <script src="assets/js/main.js"></script>
-</body>
+
+</body> 
 </html>
