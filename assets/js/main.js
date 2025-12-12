@@ -234,6 +234,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /* ===================================
+   LOAD MAP
+   =================================== */
+
+function loadMap(saveConsent) {
+    const iframe = document.getElementById('google-map');
+    const placeholder = document.getElementById('map-placeholder');
+    
+    const mapSrc = "https://maps.google.com/maps?q=Estudas%3F+Comigo!+Vila+Nova+de+Gaia&t=&z=16&ie=UTF8&iwloc=&output=embed"; 
+    
+    if(iframe && placeholder) {
+        iframe.src = mapSrc;
+        iframe.classList.remove('hidden');
+        
+        placeholder.style.opacity = '0';
+        setTimeout(() => {
+            placeholder.style.display = 'none';
+        }, 500);
+        
+        if(saveConsent) {
+            localStorage.setItem('cookieConsent', 'granted');
+            const banner = document.getElementById('cookie-banner');
+            if(banner) banner.classList.add('translate-y-full');
+        }
+    }
+}
+
+/* ===================================
    CONSOLE BRANDING
    =================================== */
 
