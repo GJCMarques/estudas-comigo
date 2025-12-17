@@ -1,0 +1,11 @@
+# Dependências (o mais importante)
+node_modules/
+
+# Logs e ficheiros de sistema
+.DS_Store
+Thumbs.db
+npm-debug.log*
+
+# Se quiseres ser purista, podes ignorar o input,
+# mas como não vamos configurar build no servidor para já,
+# podes deixar o resto subir para teres backup do código.
